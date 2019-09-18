@@ -1,0 +1,163 @@
+<div class="container">
+  <form #menuForm="ngForm" style="margin-top:20px !important;">
+    <table datatable data-order='' class="row-border hover">
+      <thead style="font-size:18px;">
+        <tr><th>&nbsp;</th>
+        <th>Category</th>
+        <th>Label</th>
+        <th>Value</th>
+        <th>Show Label</th>
+        <th>Show Value</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" (change)="hrshowhide" #hrshowhide></td>
+          <td>HR/PII</td>
+          <td><label for="first_nameL">First Name</label></td>
+          <td>Paul</td>
+          <td><input type="checkbox" id="first_nameL" [checked]="hrshowhide.checked"></td>
+          <td><input type="checkbox" id="first_nameV" [checked]="hrshowhide.checked"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="middle_nameL">Middle Name</label></td>
+          <td>&lt;redacted&gt;</td>
+          <td><input type="checkbox" id="middle_nameL" [checked]="hrshowhide.checked"></td>
+          <td><input type="checkbox" id="middle_nameV" [checked]="hrshowhide.checked"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="last_nameL">Last Name</label></td>
+          <td>Yeager</td>
+          <td><input type="checkbox" id="last_nameL" [checked]="hrshowhide.checked"></td>
+          <td><input type="checkbox" id="last_nameV" [checked]="hrshowhide.checked"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="emailL">EMail</label></td>
+          <td>pyeager@firstrepublic.com</td>
+          <td><input type="checkbox" id="emailL" [checked]="hrshowhide.checked"></td>
+          <td><input type="checkbox" id="emailV" [checked]="hrshowhide.checked"></td>
+        </tr>
+        <!--<tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="zipcodeL">Zipcode</label></td>
+          <td>94930</td>
+          <td><input type="checkbox" id="zipcodeL" required></td>
+          <td><input type="checkbox" id="zipcodeV" required></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="codeOTheDayL">Code of the Day</label></td>
+          <td>&lt;redacted&gt;</td>
+          <td><input type="checkbox" id="codeOTheDayL" required></td>
+          <td><input type="checkbox" id="codeOTheDayV" required></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="socialMediaURLL">Social Media URL</label></td>
+          <td>NULL</td>
+          <td><input type="checkbox" id="socialMediaURLL" required></td>
+          <td><input type="checkbox" id="socialMediaURLV" required></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="socialSecurityNumberL">Social Security Number</label></td>
+          <td>&lt;redacted&gt;</td>
+          <td><input type="checkbox" id="socialSecurityNumberL" required></td>
+          <td><input type="checkbox" id="socialSecurityNumberV" required></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="driversLicenseL">Driver's License Number</label></td>
+          <td>&lt;redacted&gt;</td>
+          <td><input type="checkbox" id="driversLicenseL" required></td>
+          <td><input type="checkbox" id="driversLicenseV" required></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="passportNumberL">Passport Number</label></td>
+          <td>&lt;redacted&gt;</td>
+          <td><input type="checkbox" id="passportNumberL" required></td>
+          <td><input type="checkbox" id="passportNumberV" required></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="passportNationL">Passport Nation</label></td>
+          <td>&lt;redacted&gt;</td>
+          <td><input type="checkbox" id="passportNationL" required></td>
+          <td><input type="checkbox" id="passportNationV" required></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="ageL">Age</label></td>
+          <td>38</td>
+          <td><input type="checkbox" id="passportNationL" required></td>
+          <td><input type="checkbox" id="passportNationV" required></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="otherNamesUsedInThePastL">Other Names Used In The Past</label></td>
+          <td>NULL</td>
+          <td><input type="checkbox" id="passportNationL" required></td>
+          <td><input type="checkbox" id="passportNationV" required></td>
+        </tr>-->
+        <tr>
+          <td><input type="checkbox" (change)="healthshowhide" #healthshowhide></td>
+          <td>Health/PHI</td>
+          <td><label for="dxL">Medical Diagnosis</label></td>
+          <td>Active Worker</td>
+          <td><input type="checkbox" id="dxL" [checked]="healthshowhide.checked"></td>
+          <td><input type="checkbox" id="dxV" [checked]="healthshowhide.checked"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="rxL">Medical Prescription</label></td>
+          <td>CoQ10AndLecithin</td>
+          <td><input type="checkbox" id="rxL" [checked]="healthshowhide.checked"></td>
+          <td><input type="checkbox" id="rxV" [checked]="healthshowhide.checked"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="bloodGrpL">Blood Group</label></td>
+          <td>O-Positive</td>
+          <td><input type="checkbox" id="bloodGrpL" [checked]="healthshowhide.checked"></td>
+          <td><input type="checkbox" id="bloodGrpV" [checked]="healthshowhide.checked"></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" (change)="fintechshowhide" #fintechshowhide></td>
+          <td>FinTech/PCI</td>
+          <td><label for="nonPciIdFromEcommAPIL">PCI-Protected Acct</label></td>
+          <td>1234566</td>
+          <td><input type="checkbox" id="nonPciIdFromEcommAPIL" [checked]="fintechshowhide.checked"></td>
+          <td><input type="checkbox" id="nonPciIdFromEcommAPIV" [checked]="fintechshowhide.checked"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="nonPciCCThreeDigitsL">PCI-Protected SecDigits</label></td>
+          <td>345</td>
+          <td><input type="checkbox" id="nonPciCCThreeDigitsL" [checked]="fintechshowhide.checked"></td>
+          <td><input type="checkbox" id="nonPciCCThreeDigitsV" [checked]="fintechshowhide.checked"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+
+  </form>
+</div>
