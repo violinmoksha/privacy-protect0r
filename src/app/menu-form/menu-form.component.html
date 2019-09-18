@@ -1,0 +1,211 @@
+<div class="container">
+  <form #menuForm="ngForm">
+    <h2>HR/PII VALUES and LABELS: Check the Box to Display the PII Data</h2>
+
+    <!--<table>
+      <thead>
+        <th>Field</th>
+        <th>Label</th>
+        <th>Value</th>
+      </thead>
+      <tbody>
+        <tr>
+          <div class="form-group">
+            <label for="first_nameL">First Name</label>
+            <input type="checkbox" class="form-control" id="first_nameL" required>
+          </div>
+        </tr>
+      </tbody>
+    </table>-->
+
+    <!-- lets do this as divs instead--this isnt a datatable exactly
+          but could use one in non-prototype -->
+
+    <div class="form-group">
+      <label for="first_nameL">First Name Label</label>
+      <input type="checkbox" class="form-control" id="first_nameL" required [(ngModel)]="model.first_nameL" name="first_nameL">
+    </div>
+
+    <div class="form-group">
+      <label for="first_nameV">First Name Value</label>
+      <input type="checkbox" class="form-control" id="first_nameV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="middle_nameL">Middle Name Label</label>
+      <input type="checkbox" class="form-control" id="middle_nameL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="middle_nameV">Middle Name Value</label>
+      <input type="checkbox" class="form-control" id="middle_nameV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="last_nameL">Last Name Label</label>
+      <input type="checkbox" class="form-control" id="last_nameL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="last_nameV">Last Name Value</label>
+      <input type="checkbox" class="form-control" id="last_nameV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="emailL">Email Label</label>
+      <input type="checkbox" class="form-control" id="emailL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="emailV">Email Value</label>
+      <input type="checkbox" class="form-control" id="emailV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneL">Phone Number Label</label>
+      <input type="checkbox" class="form-control" id="phoneL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneV">Phone Number Value</label>
+      <input type="checkbox" class="form-control" id="phoneV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="zipcodeL">Zipcode Label</label>
+      <input type="checkbox" class="form-control" id="zipcodeL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="zipcodeV">Zipcode Value</label>
+      <input type="checkbox" class="form-control" id="zipcodeV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="codeOTheDayL">Code of the Day Label</label>
+      <input type="checkbox" class="form-control" id="codeOTheDayL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="codeOTheDayV">Code of the Day Value</label>
+      <input type="checkbox" class="form-control" id="codeOTheDayV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="socialMediaURLL">Social Media URL Label</label>
+      <input type="checkbox" class="form-control" id="socialMediaURLL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="socialMediaURLV">Social Media URL Value</label>
+      <input type="checkbox" class="form-control" id="socialMediaURLV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="socialSecurityNumberL">Social Security Number Label</label>
+      <input type="checkbox" class="form-control" id="socialSecurityNumberL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="socialSecurityNumberV">Social Security Number Value</label>
+      <input type="checkbox" class="form-control" id="socialSecurityNumberV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="driversLicenseL">Drivers License Label</label>
+      <input type="checkbox" class="form-control" id="driversLicenseL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="driversLicenseV">Drivers License Value</label>
+      <input type="checkbox" class="form-control" id="driversLicenseV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="passportNumberL">Passport Number Label</label>
+      <input type="checkbox" class="form-control" id="passportNumberL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="passportNumberV">Passport Number Value</label>
+      <input type="checkbox" class="form-control" id="passportNumberV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="passportNationL">Passport Nation Label</label>
+      <input type="checkbox" class="form-control" id="passportNationL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="passportNationV">Passport Nation Value</label>
+      <input type="checkbox" class="form-control" id="passportNationV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="ageL">Age Label</label>
+      <input type="checkbox" class="form-control" id="ageL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="ageV">Age Value</label>
+      <input type="checkbox" class="form-control" id="ageV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="otherNamesUsedInThePastL">Other Names Used in the Past Label</label>
+      <input type="checkbox" class="form-control" id="otherNamesUsedInThePastL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="otherNamesUsedInThePastV">Other Names Used in the Past Value</label>
+      <input type="checkbox" class="form-control" id="otherNamesUsedInThePastV" required>
+    </div>
+
+    <h2>Health/PHI Data VALUES and LABELS: Check the Box to Display the PHI Data</h2>
+
+    <div class="form-group">
+      <label for="dxL">Medical Diagnosis Label</label>
+      <input type="checkbox" class="form-control" id="dxL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="dxV">Medical Diagnosis Value</label>
+      <input type="checkbox" class="form-control" id="dxV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="rxL">Medical Prescription Label</label>
+      <input type="checkbox" class="form-control" id="rxL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="rxV">Medical Prescription Value</label>
+      <input type="checkbox" class="form-control" id="rxV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="compliantPatientL">Compliant Patient Label</label>
+      <input type="checkbox" class="form-control" id="compliantPatientL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="compliantPatientV">Compliant Patient Value</label>
+      <input type="checkbox" class="form-control" id="compliantPatientV" required>
+    </div>
+
+    <div class="form-group">
+      <label for="governmentFoodSubsistenceL">Government Food Subsistence Label</label>
+      <input type="checkbox" class="form-control" id="governmentFoodSubsistenceL" required>
+    </div>
+
+    <div class="form-group">
+      <label for="governmentFoodSubsistenceV">Government Food Subsistence Value</label>
+      <input type="checkbox" class="form-control" id="governmentFoodSubsistenceV" required>
+    </div>
+
+    <!--<h2>Financial/PCI Data VALUES and LABELS: Check the Box to Display the PCI Data</h2>-->
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>
+</div>
