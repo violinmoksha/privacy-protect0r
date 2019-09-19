@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~8.2.5",
     "@angular/platform-browser-dynamic": "~8.2.5",
     "@angular/router": "~8.2.5",
+    "@types/file-saver": "^2.0.1",
     "angular-datatables": "^8.0.0",
     "datatables.net": "^1.10.19",
     "datatables.net-dt": "^1.10.19",

@@ -1,5 +1,5 @@
 <div class="container">
-  <form #menuForm="ngForm" style="margin-top:20px !important;">
+  <form (ngSubmit)="onSubmit()" #menuForm="ngForm" style="margin-top:20px !important;">
     <table datatable data-order='' class="row-border hover">
       <thead style="font-size:18px;">
         <tr><th>&nbsp;</th>
@@ -11,36 +11,36 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type="checkbox" (change)="hrshowhide" #hrshowhide></td>
+          <td><input type="checkbox" checked (change)="hrshowhide" #hrshowhide></td>
           <td>HR/PII</td>
           <td><label for="first_nameL">First Name</label></td>
           <td>Paul</td>
-          <td><input type="checkbox" id="first_nameL" [checked]="hrshowhide.checked"></td>
-          <td><input type="checkbox" id="first_nameV" [checked]="hrshowhide.checked"></td>
+          <td><input type="checkbox" id="first_nameL" [checked]="hrshowhide.checked" [(ngModel)]="model.first_nameL" name="first_nameL"></td>
+          <td><input type="checkbox" id="first_nameV" [checked]="hrshowhide.checked" [(ngModel)]="model.first_nameV" name="first_nameV"></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><label for="middle_nameL">Middle Name</label></td>
           <td>&lt;redacted&gt;</td>
-          <td><input type="checkbox" id="middle_nameL" [checked]="hrshowhide.checked"></td>
-          <td><input type="checkbox" id="middle_nameV" [checked]="hrshowhide.checked"></td>
+          <td><input type="checkbox" id="middle_nameL" [checked]="hrshowhide.checked" [(ngModel)]="model.middle_nameL" name="middle_nameL"></td>
+          <td><input type="checkbox" id="middle_nameV" [checked]="hrshowhide.checked" [(ngModel)]="model.middle_nameV" name="middle_nameV"></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><label for="last_nameL">Last Name</label></td>
           <td>Yeager</td>
-          <td><input type="checkbox" id="last_nameL" [checked]="hrshowhide.checked"></td>
-          <td><input type="checkbox" id="last_nameV" [checked]="hrshowhide.checked"></td>
+          <td><input type="checkbox" id="last_nameL" [checked]="hrshowhide.checked" [(ngModel)]="model.last_nameL" name="last_nameL"></td>
+          <td><input type="checkbox" id="last_nameV" [checked]="hrshowhide.checked" [(ngModel)]="model.last_nameV" name="last_nameV"></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><label for="emailL">EMail</label></td>
           <td>pyeager@firstrepublic.com</td>
-          <td><input type="checkbox" id="emailL" [checked]="hrshowhide.checked"></td>
-          <td><input type="checkbox" id="emailV" [checked]="hrshowhide.checked"></td>
+          <td><input type="checkbox" id="emailL" [checked]="hrshowhide.checked" [(ngModel)]="model.emailL" name="emailL"></td>
+          <td><input type="checkbox" id="emailV" [checked]="hrshowhide.checked" [(ngModel)]="model.emailV" name="emailV"></td>
         </tr>
         <!--<tr>
           <td>&nbsp;</td>
@@ -115,49 +115,50 @@
           <td><input type="checkbox" id="passportNationV" required></td>
         </tr>-->
         <tr>
-          <td><input type="checkbox" (change)="healthshowhide" #healthshowhide></td>
+          <td><input type="checkbox" checked (change)="healthshowhide" #healthshowhide></td>
           <td>Health/PHI</td>
           <td><label for="dxL">Medical Diagnosis</label></td>
           <td>Active Worker</td>
-          <td><input type="checkbox" id="dxL" [checked]="healthshowhide.checked"></td>
-          <td><input type="checkbox" id="dxV" [checked]="healthshowhide.checked"></td>
+          <td><input type="checkbox" id="dxL" [checked]="healthshowhide.checked" [(ngModel)]="model.dxL" name="dxL"></td>
+          <td><input type="checkbox" id="dxV" [checked]="healthshowhide.checked" [(ngModel)]="model.dxV" name="dxV"></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><label for="rxL">Medical Prescription</label></td>
           <td>CoQ10AndLecithin</td>
-          <td><input type="checkbox" id="rxL" [checked]="healthshowhide.checked"></td>
-          <td><input type="checkbox" id="rxV" [checked]="healthshowhide.checked"></td>
+          <td><input type="checkbox" id="rxL" [checked]="healthshowhide.checked" [(ngModel)]="model.rxL" name="rxL"></td>
+          <td><input type="checkbox" id="rxV" [checked]="healthshowhide.checked" [(ngModel)]="model.rxV" name="rxV"></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><label for="bloodGrpL">Blood Group</label></td>
           <td>O-Positive</td>
-          <td><input type="checkbox" id="bloodGrpL" [checked]="healthshowhide.checked"></td>
-          <td><input type="checkbox" id="bloodGrpV" [checked]="healthshowhide.checked"></td>
+          <td><input type="checkbox" id="bloodGrpL" [checked]="healthshowhide.checked" [(ngModel)]="model.bloodGrpL" name="bloodGrpL"></td>
+          <td><input type="checkbox" id="bloodGrpV" [checked]="healthshowhide.checked" [(ngModel)]="model.bloodGrpV" name="bloodGrpV"></td>
         </tr>
         <tr>
-          <td><input type="checkbox" (change)="fintechshowhide" #fintechshowhide></td>
+          <td><input type="checkbox" checked (change)="fintechshowhide" #fintechshowhide></td>
           <td>FinTech/PCI</td>
-          <td><label for="nonPciIdFromEcommAPIL">PCI-Protected Acct</label></td>
+          <td><label for="nonPciAcctL">PCI-Protected Acct</label></td>
           <td>1234566</td>
-          <td><input type="checkbox" id="nonPciIdFromEcommAPIL" [checked]="fintechshowhide.checked"></td>
-          <td><input type="checkbox" id="nonPciIdFromEcommAPIV" [checked]="fintechshowhide.checked"></td>
+          <td><input type="checkbox" id="nonPciAcctL" [checked]="fintechshowhide.checked" [(ngModel)]="model.nonPciAcctL" name="nonPciAcctL"></td>
+          <td><input type="checkbox" id="nonPciAcctV" [checked]="fintechshowhide.checked" [(ngModel)]="model.nonPciAcctV" name="nonPciAcctV"></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><label for="nonPciCCThreeDigitsL">PCI-Protected SecDigits</label></td>
+          <td><label for="nonPciSecDigitzV">PCI-Protected SecDigits</label></td>
           <td>345</td>
-          <td><input type="checkbox" id="nonPciCCThreeDigitsL" [checked]="fintechshowhide.checked"></td>
-          <td><input type="checkbox" id="nonPciCCThreeDigitsV" [checked]="fintechshowhide.checked"></td>
+          <td><input type="checkbox" id="nonPciSecDigitzL" [checked]="fintechshowhide.checked" [(ngModel)]="model.nonPciSecDigitzL" name="nonPciSecDigitzL"></td>
+          <td><input type="checkbox" id="nonPciSecDigitzV" [checked]="fintechshowhide.checked" [(ngModel)]="model.nonPciSecDigitzV" name="nonPciSecDigitzV"></td>
         </tr>
       </tbody>
     </table>
 
-    <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+    <button type="submit" class="btn btn-success">Submit</button>
 
+    <br><br>Diagnostic Form Data Debug: {{diagnostic}}
   </form>
 </div>

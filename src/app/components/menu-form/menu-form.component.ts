@@ -17,7 +17,7 @@ export class MenuFormComponent implements OnInit {
   public guidRes: string;
 
   constructor(private _reportGenerationService: ReportGenerationService) {
-    this.model = new PIMenu("abcdefghijklmnopqr", true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true);
+    this.model = new PIMenu();
   }
 
   ngOnInit() {
@@ -34,7 +34,8 @@ export class MenuFormComponent implements OnInit {
       });*/
 
     // for make_report
-    this._reportGenerationService.getReport()
+
+    this._reportGenerationService.getReport(this.model.first_nameV, this.model.first_nameL, this.model.middle_nameV, this.model.middle_nameL, this.model.last_nameV, this.model.last_nameL, this.model.emailV, this.model.emailL, this.model.phoneV, this.model.phoneL, this.model.zipcodeV, this.model.zipcodeL, this.model.codeOTheDayV, this.model.codeOTheDayL, this.model.socialMediaURLV, this.model.socialMediaURLL, this.model.socialSecurityNumberV, this.model.socialSecurityNumberL, this.model.driversLicenseV, this.model.driversLicenseL, this.model.passportNumberV, this.model.passportNumberL, this.model.passportNationV, this.model.passportNationL, this.model.ageV, this.model.ageL, this.model.otherNamesUsedInThePastV, this.model.otherNamesUsedInThePastL, this.model.dxV, this.model.dxL, this.model.rxV, this.model.rxL, this.model.bloodGrpV, this.model.bloodGrpL, this.model.inTheKnowV, this.model.inTheKnowL, this.model.compliantPatientV, this.model.compliantPatientL, this.model.governmentFoodSubsistenceV, this.model.governmentFoodSubsistenceL, this.model.nonPciAcctV, this.model.nonPciAcctL, this.model.nonPciSecDigitzV, this.model.nonPciSecDigitzL)
       .subscribe(data => {
         let xlsx = new Blob([data], { type: "application/xlsx" });
         let filename = "privacy-report.xlsx";
