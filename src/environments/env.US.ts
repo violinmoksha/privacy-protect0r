@@ -1,4 +1,4 @@
 export const environment = {   //THIS IS FOR DEFAULT VALUES
-  production: true,
+  production: false,
   EXEC_COUNTRY:'US'
 }
