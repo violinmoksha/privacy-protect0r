@@ -10,39 +10,47 @@
         <th>Show Value</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td><input type="checkbox" checked (change)="hrshowhide" #hrshowhide></td>
-          <td>HR/PII</td>
-          <td><label for="first_nameL">First Name</label></td>
-          <td>Paul</td>
-          <td><input type="checkbox" id="first_nameL" [checked]="hrshowhide.checked" [(ngModel)]="model.first_nameL" name="first_nameL"></td>
-          <td><input type="checkbox" id="first_nameV" [checked]="hrshowhide.checked" [(ngModel)]="model.first_nameV" name="first_nameV"></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td><label for="middle_nameL">Middle Name</label></td>
-          <td>&lt;redacted&gt;</td>
-          <td><input type="checkbox" id="middle_nameL" [checked]="hrshowhide.checked" [(ngModel)]="model.middle_nameL" name="middle_nameL"></td>
-          <td><input type="checkbox" id="middle_nameV" [checked]="hrshowhide.checked" [(ngModel)]="model.middle_nameV" name="middle_nameV"></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td><label for="last_nameL">Last Name</label></td>
-          <td>Yeager</td>
-          <td><input type="checkbox" id="last_nameL" [checked]="hrshowhide.checked" [(ngModel)]="model.last_nameL" name="last_nameL"></td>
-          <td><input type="checkbox" id="last_nameV" [checked]="hrshowhide.checked" [(ngModel)]="model.last_nameV" name="last_nameV"></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td><label for="emailL">EMail</label></td>
-          <td>pyeager@firstrepublic.com</td>
-          <td><input type="checkbox" id="emailL" [checked]="hrshowhide.checked" [(ngModel)]="model.emailL" name="emailL"></td>
-          <td><input type="checkbox" id="emailV" [checked]="hrshowhide.checked" [(ngModel)]="model.emailV" name="emailV"></td>
-        </tr>
+          <tr>
+            <td><input type="checkbox" checked (change)="hrshowhide" #hrshowhide></td>
+            <td>HR/PII</td>
+            <td><label for="first_nameL">First Name</label></td>
+            <td>Paul</td>
+            <td><input type="checkbox" id="first_nameL" [checked]="hrshowhide.checked" [(ngModel)]="model.first_nameL" name="first_nameL"></td>
+            <td><input type="checkbox" id="first_nameV" [checked]="hrshowhide.checked" [(ngModel)]="model.first_nameV" name="first_nameV"></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td><label for="middle_nameL">Middle Name</label></td>
+            <td>&lt;redacted&gt;</td>
+            <td><input type="checkbox" id="middle_nameL" [checked]="hrshowhide.checked" [(ngModel)]="model.middle_nameL" name="middle_nameL"></td>
+            <td><input type="checkbox" id="middle_nameV" [checked]="hrshowhide.checked" [(ngModel)]="model.middle_nameV" name="middle_nameV"></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td><label for="last_nameL">Last Name</label></td>
+            <td>Yeager</td>
+            <td><input type="checkbox" id="last_nameL" [checked]="hrshowhide.checked" [(ngModel)]="model.last_nameL" name="last_nameL"></td>
+            <td><input type="checkbox" id="last_nameV" [checked]="hrshowhide.checked" [(ngModel)]="model.last_nameV" name="last_nameV"></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td><label for="emailL">EMail</label></td>
+            <td>pyeager@firstrepublic.com</td>
+            <td><input type="checkbox" id="emailL" [checked]="hrshowhide.checked" [(ngModel)]="model.emailL" name="emailL"></td>
+            <td><input type="checkbox" id="emailV" [checked]="hrshowhide.checked" [(ngModel)]="model.emailV" name="emailV"></td>
+          </tr>
         <!--<tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><label for="phoneL">Phone</label></td>
+          <td>252-235-8335</td>
+          <td><input type="checkbox" id="phoneL" [checked]="hrshowhide.checked" [(ngModel)]="model.phoneL" name="phoneL"></td>
+          <td><input type="checkbox" id="phoneV" [checked]="hrshowhide.checked" [(ngModel)]="model.phoneV" name="phoneV"></td>
+        </tr>
+        <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><label for="zipcodeL">Zipcode</label></td>
