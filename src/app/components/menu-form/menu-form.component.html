@@ -156,7 +156,7 @@
       <tbody>
         <tr>
           <td><input type="checkbox" checked (change)="finTechShowHide(fintechshowhide.checked)" #fintechshowhide></td>
-          <td><a class="btn btn-link" (click)="finTechShowHide(finTechExpanded == true ? false: true)"><span *ngIf="finTechExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!hrExpanded" class="glyphicon glyphicon-chevron-right"></span>FinTech/PCI</a></td>
+          <td><a class="btn btn-link" (click)="finTechShowHide(finTechExpanded == true ? false: true)"><span *ngIf="finTechExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!finTechExpanded" class="glyphicon glyphicon-chevron-right"></span>FinTech/PCI</a></td>
           <td><label for="nonPciAcctL">PCI-Protected Acct</label></td>
           <td>1234566</td>
           <td><input type="checkbox" id="nonPciAcctL" #nonPciAcctL [checked]="fintechshowhide.checked" name="nonPciAcctL" (change)="model.nonPciAcctL == 'true' ? model.nonPciAcctL = 'false' : model.nonPciAcctL = 'true'"></td>
