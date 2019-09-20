@@ -12,155 +12,165 @@
       <tbody>
           <tr>
             <td><input type="checkbox" checked (change)="hrShowHide(hrshowhide.checked)" #hrshowhide id="hrshowhide"></td>
-            <td>HR/PII</td>
+            <td><a class="btn btn-link" (click)="hrShowHide(hrExpanded == true ? false: true)"><span *ngIf="hrExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!hrExpanded" class="glyphicon glyphicon-chevron-right"></span>HR/PII</a></td>
             <td><label for="first_nameL">First Name</label></td>
             <td>Paul</td>
-            <td><input type="checkbox" id="first_nameL" [checked]="hrshowhide.checked" name="first_nameL" (change)="model.first_nameL == 'true' ? model.first_nameL = 'false' : model.first_nameL = 'true'"></td>
-            <td><input type="checkbox" id="first_nameV" [checked]="hrshowhide.checked" name="first_nameV" (change)="model.first_nameV == 'true' ? model.first_nameV = 'false' : model.first_nameV = 'true'"></td>
+            <td><input type="checkbox" id="first_nameL" #first_nameL [checked]="hrshowhide.checked" name="first_nameL" (change)="model.first_nameL == 'true' ? model.first_nameL = 'false' : model.first_nameL = 'true'"></td>
+            <td><input type="checkbox" id="first_nameV" [checked]="first_nameL.checked && hrshowhide.checked" name="first_nameV" (change)="model.first_nameV == 'true' ? model.first_nameV = 'false' : model.first_nameV = 'true'"></td>
           </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td><label for="middle_nameL">Middle Name</label></td>
-            <td>&lt;redacted&gt;</td>
-            <td><input type="checkbox" id="middle_nameL" [checked]="hrshowhide.checked" name="middle_nameL" (change)="model.middle_nameL == 'true' ? model.middle_nameL = 'false' : model.middle_nameL = 'true'"></td>
-            <td><input type="checkbox" id="middle_nameV" [checked]="hrshowhide.checked" name="middle_nameV" (change)="model.middle_nameV == 'true' ? model.middle_nameV = 'false' : model.middle_nameV = 'true'"></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td><label for="last_nameL">Last Name</label></td>
-            <td>Yeager</td>
-            <td><input type="checkbox" id="last_nameL" [checked]="hrshowhide.checked" name="last_nameL" (change)="model.last_nameL == 'true' ? model.last_nameL = 'false' : model.last_nameL = 'true'"></td>
-            <td><input type="checkbox" id="last_nameV" [checked]="hrshowhide.checked" name="last_nameV" (change)="model.last_nameV == 'true' ? model.last_nameV = 'false' : model.last_nameV = 'true'"></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td><label for="emailL">EMail</label></td>
-            <td>pyeager@firstrepublic.com</td>
-            <td><input type="checkbox" id="emailL" [checked]="hrshowhide.checked" name="emailL" (change)="model.emailL == 'true' ? model.emailL = 'false' : model.emailL = 'true'"></td>
-            <td><input type="checkbox" id="emailV" [checked]="hrshowhide.checked" name="emailV" (change)="model.emailV == 'true' ? model.emailV = 'false' : model.emailV = 'true'"></td>
-          </tr>
-        <!--<tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td><label for="phoneL">Phone</label></td>
-          <td>252-235-8335</td>
-          <td><input type="checkbox" id="phoneL" [checked]="hrshowhide.checked" [(ngModel)]="model.phoneL" name="phoneL"></td>
-          <td><input type="checkbox" id="phoneV" [checked]="hrshowhide.checked" [(ngModel)]="model.phoneV" name="phoneV"></td>
-        </tr>
+      </tbody>
+      <tbody *ngIf="hrExpanded">
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><label for="zipcodeL">Zipcode</label></td>
-          <td>94930</td>
-          <td><input type="checkbox" id="zipcodeL" required></td>
-          <td><input type="checkbox" id="zipcodeV" required></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td><label for="codeOTheDayL">Code of the Day</label></td>
+          <td><label for="middle_nameL">Middle Name</label></td>
           <td>&lt;redacted&gt;</td>
-          <td><input type="checkbox" id="codeOTheDayL" required></td>
-          <td><input type="checkbox" id="codeOTheDayV" required></td>
+          <td><input type="checkbox" id="middle_nameL" #middle_nameL [checked]="hrshowhide.checked" name="middle_nameL" (change)="model.middle_nameL == 'true' ? model.middle_nameL = 'false' : model.middle_nameL = 'true'"></td>
+          <td><input type="checkbox" id="middle_nameV" [checked]="middle_nameL.checked && hrshowhide.checked" name="middle_nameV" (change)="model.middle_nameV == 'true' ? model.middle_nameV = 'false' : model.middle_nameV = 'true'"></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><label for="socialMediaURLL">Social Media URL</label></td>
-          <td>NULL</td>
-          <td><input type="checkbox" id="socialMediaURLL" required></td>
-          <td><input type="checkbox" id="socialMediaURLV" required></td>
+          <td><label for="last_nameL">Last Name</label></td>
+          <td>Yeager</td>
+          <td><input type="checkbox" id="last_nameL" #last_nameL [checked]="hrshowhide.checked" name="last_nameL" (change)="model.last_nameL == 'true' ? model.last_nameL = 'false' : model.last_nameL = 'true'"></td>
+          <td><input type="checkbox" id="last_nameV" [checked]="last_nameL.checked && hrshowhide.checked" name="last_nameV" (change)="model.last_nameV == 'true' ? model.last_nameV = 'false' : model.last_nameV = 'true'"></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><label for="socialSecurityNumberL">Social Security Number</label></td>
-          <td>&lt;redacted&gt;</td>
-          <td><input type="checkbox" id="socialSecurityNumberL" required></td>
-          <td><input type="checkbox" id="socialSecurityNumberV" required></td>
+          <td><label for="emailL">EMail</label></td>
+          <td>pyeager@firstrepublic.com</td>
+          <td><input type="checkbox" id="emailL" #emailL [checked]="hrshowhide.checked" name="emailL" (change)="model.emailL == 'true' ? model.emailL = 'false' : model.emailL = 'true'"></td>
+          <td><input type="checkbox" id="emailV" [checked]="emailL.checked && hrshowhide.checked" name="emailV" (change)="model.emailV == 'true' ? model.emailV = 'false' : model.emailV = 'true'"></td>
         </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td><label for="driversLicenseL">Driver's License Number</label></td>
-          <td>&lt;redacted&gt;</td>
-          <td><input type="checkbox" id="driversLicenseL" required></td>
-          <td><input type="checkbox" id="driversLicenseV" required></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td><label for="passportNumberL">Passport Number</label></td>
-          <td>&lt;redacted&gt;</td>
-          <td><input type="checkbox" id="passportNumberL" required></td>
-          <td><input type="checkbox" id="passportNumberV" required></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td><label for="passportNationL">Passport Nation</label></td>
-          <td>&lt;redacted&gt;</td>
-          <td><input type="checkbox" id="passportNationL" required></td>
-          <td><input type="checkbox" id="passportNationV" required></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td><label for="ageL">Age</label></td>
-          <td>38</td>
-          <td><input type="checkbox" id="passportNationL" required></td>
-          <td><input type="checkbox" id="passportNationV" required></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td><label for="otherNamesUsedInThePastL">Other Names Used In The Past</label></td>
-          <td>NULL</td>
-          <td><input type="checkbox" id="passportNationL" required></td>
-          <td><input type="checkbox" id="passportNationV" required></td>
-        </tr>-->
+      </tbody>
+      <!--<tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><label for="phoneL">Phone</label></td>
+        <td>252-235-8335</td>
+        <td><input type="checkbox" id="phoneL" [checked]="hrshowhide.checked" [(ngModel)]="model.phoneL" name="phoneL"></td>
+        <td><input type="checkbox" id="phoneV" [checked]="hrshowhide.checked" [(ngModel)]="model.phoneV" name="phoneV"></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><label for="zipcodeL">Zipcode</label></td>
+        <td>94930</td>
+        <td><input type="checkbox" id="zipcodeL" required></td>
+        <td><input type="checkbox" id="zipcodeV" required></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><label for="codeOTheDayL">Code of the Day</label></td>
+        <td>&lt;redacted&gt;</td>
+        <td><input type="checkbox" id="codeOTheDayL" required></td>
+        <td><input type="checkbox" id="codeOTheDayV" required></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><label for="socialMediaURLL">Social Media URL</label></td>
+        <td>NULL</td>
+        <td><input type="checkbox" id="socialMediaURLL" required></td>
+        <td><input type="checkbox" id="socialMediaURLV" required></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><label for="socialSecurityNumberL">Social Security Number</label></td>
+        <td>&lt;redacted&gt;</td>
+        <td><input type="checkbox" id="socialSecurityNumberL" required></td>
+        <td><input type="checkbox" id="socialSecurityNumberV" required></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><label for="driversLicenseL">Driver's License Number</label></td>
+        <td>&lt;redacted&gt;</td>
+        <td><input type="checkbox" id="driversLicenseL" required></td>
+        <td><input type="checkbox" id="driversLicenseV" required></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><label for="passportNumberL">Passport Number</label></td>
+        <td>&lt;redacted&gt;</td>
+        <td><input type="checkbox" id="passportNumberL" required></td>
+        <td><input type="checkbox" id="passportNumberV" required></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><label for="passportNationL">Passport Nation</label></td>
+        <td>&lt;redacted&gt;</td>
+        <td><input type="checkbox" id="passportNationL" required></td>
+        <td><input type="checkbox" id="passportNationV" required></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><label for="ageL">Age</label></td>
+        <td>38</td>
+        <td><input type="checkbox" id="passportNationL" required></td>
+        <td><input type="checkbox" id="passportNationV" required></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><label for="otherNamesUsedInThePastL">Other Names Used In The Past</label></td>
+        <td>NULL</td>
+        <td><input type="checkbox" id="passportNationL" required></td>
+        <td><input type="checkbox" id="passportNationV" required></td>
+      </tr>-->
+      <tbody>
         <tr>
           <td><input type="checkbox" checked (change)="healthShowHide(healthshowhide.checked)" #healthshowhide></td>
-          <td>Health/PHI</td>
+          <td><a class="btn btn-link" (click)="healthShowHide(healthExpanded == true ? false: true)"><span *ngIf="healthExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!healthExpanded" class="glyphicon glyphicon-chevron-right"></span>Health/PHI</a></td>
           <td><label for="dxL">Medical Diagnosis</label></td>
           <td>Active Worker</td>
-          <td><input type="checkbox" id="dxL" [checked]="healthshowhide.checked" name="dxL" (change)="model.dxL == 'true' ? model.dxL = 'false' : model.dxL = 'true'"></td>
-          <td><input type="checkbox" id="dxV" [checked]="healthshowhide.checked" name="dxV" (change)="model.dxV == 'true' ? model.dxV = 'false' : model.dxV = 'true'"></td>
+          <td><input type="checkbox" id="dxL" #dxL [checked]="healthshowhide.checked" name="dxL" (change)="model.dxL == 'true' ? model.dxL = 'false' : model.dxL = 'true'"></td>
+          <td><input type="checkbox" id="dxV" [checked]="dxL.checked && healthshowhide.checked" name="dxV" (change)="model.dxV == 'true' ? model.dxV = 'false' : model.dxV = 'true'"></td>
         </tr>
+      <tbody>
+      <tbody *ngIf="healthExpanded">
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><label for="rxL">Medical Prescription</label></td>
           <td>CoQ10AndLecithin</td>
-          <td><input type="checkbox" id="rxL" [checked]="healthshowhide.checked" name="rxL" (change)="model.rxL == 'true' ? model.rxL = 'false' : model.rxL = 'true'"></td>
-          <td><input type="checkbox" id="rxV" [checked]="healthshowhide.checked" name="rxV" (change)="model.rxV == 'true' ? model.rxV = 'false' : model.rxV = 'true'"></td>
+          <td><input type="checkbox" id="rxL" #rxL [checked]="healthshowhide.checked" name="rxL" (change)="model.rxL == 'true' ? model.rxL = 'false' : model.rxL = 'true'"></td>
+          <td><input type="checkbox" id="rxV" [checked]="rxL.checked && healthshowhide.checked" name="rxV" (change)="model.rxV == 'true' ? model.rxV = 'false' : model.rxV = 'true'"></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><label for="bloodGrpL">Blood Group</label></td>
           <td>O-Positive</td>
-          <td><input type="checkbox" id="bloodGrpL" [checked]="healthshowhide.checked" name="bloodGrpL" (change)="model.bloodGrpL == 'true' ? model.bloodGrpL = 'false' : model.bloodGrpL = 'true'"></td>
-          <td><input type="checkbox" id="bloodGrpV" [checked]="healthshowhide.checked" name="bloodGrpV" (change)="model.bloodGrpV == 'true' ? model.bloodGrpV = 'false' : model.bloodGrpV = 'true'"></td>
+          <td><input type="checkbox" id="bloodGrpL" #bloodGrpL [checked]="healthshowhide.checked" name="bloodGrpL" (change)="model.bloodGrpL == 'true' ? model.bloodGrpL = 'false' : model.bloodGrpL = 'true'"></td>
+          <td><input type="checkbox" id="bloodGrpV" [checked]="bloodGrpL.checked && healthshowhide.checked" name="bloodGrpV" (change)="model.bloodGrpV == 'true' ? model.bloodGrpV = 'false' : model.bloodGrpV = 'true'"></td>
         </tr>
+      </tbody>
+      <tbody>
         <tr>
           <td><input type="checkbox" checked (change)="finTechShowHide(fintechshowhide.checked)" #fintechshowhide></td>
-          <td>FinTech/PCI</td>
+          <td><a class="btn btn-link" (click)="finTechShowHide(finTechExpanded == true ? false: true)"><span *ngIf="finTechExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!hrExpanded" class="glyphicon glyphicon-chevron-right"></span>FinTech/PCI</a></td>
           <td><label for="nonPciAcctL">PCI-Protected Acct</label></td>
           <td>1234566</td>
-          <td><input type="checkbox" id="nonPciAcctL" [checked]="fintechshowhide.checked" name="nonPciAcctL" (change)="model.nonPciAcctL == 'true' ? model.nonPciAcctL = 'false' : model.nonPciAcctL = 'true'"></td>
-          <td><input type="checkbox" id="nonPciAcctV" [checked]="fintechshowhide.checked" name="nonPciAcctV" (change)="model.nonPciAcctV == 'true' ? model.nonPciAcctV = 'false' : model.nonPciAcctV = 'true'"></td>
+          <td><input type="checkbox" id="nonPciAcctL" #nonPciAcctL [checked]="fintechshowhide.checked" name="nonPciAcctL" (change)="model.nonPciAcctL == 'true' ? model.nonPciAcctL = 'false' : model.nonPciAcctL = 'true'"></td>
+          <td><input type="checkbox" id="nonPciAcctV" [checked]="nonPciAcctL.checked && fintechshowhide.checked" name="nonPciAcctV" (change)="model.nonPciAcctV == 'true' ? model.nonPciAcctV = 'false' : model.nonPciAcctV = 'true'"></td>
         </tr>
+      </tbody>
+      <tbody *ngIf="finTechExpanded">
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><label for="nonPciSecDigitzV">PCI-Protected SecDigits</label></td>
           <td>345</td>
-          <td><input type="checkbox" id="nonPciSecDigitzL" [checked]="fintechshowhide.checked" name="nonPciSecDigitzL" (change)="model.nonPciSecDigitzL == 'true' ? model.nonPciSecDigitzL = 'false' : model.nonPciSecDigitzL = 'true'"></td>
-          <td><input type="checkbox" id="nonPciSecDigitzV" [checked]="fintechshowhide.checked" name="nonPciSecDigitzV" (change)="model.nonPciSecDigitzV == 'true' ? model.nonPciSecDigitzV = 'false' : model.nonPciSecDigitzV = 'true'"></td>
+          <td><input type="checkbox" id="nonPciSecDigitzL" #nonPciSecDigitzL [checked]="fintechshowhide.checked" name="nonPciSecDigitzL" (change)="model.nonPciSecDigitzL == 'true' ? model.nonPciSecDigitzL = 'false' : model.nonPciSecDigitzL = 'true'"></td>
+          <td><input type="checkbox" id="nonPciSecDigitzV" [checked]="nonPciSecDigitzL.checked && fintechshowhide.checked" name="nonPciSecDigitzV" (change)="model.nonPciSecDigitzV == 'true' ? model.nonPciSecDigitzV = 'false' : model.nonPciSecDigitzV = 'true'"></td>
         </tr>
       </tbody>
     </table>

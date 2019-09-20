@@ -15,7 +15,9 @@ export class MenuFormComponent implements OnInit {
   public submitted: boolean = false;
   public model: PIMenu;
   public guidRes: string;
-  public hrshown: boolean;
+  public hrExpanded: boolean = true;
+  public healthExpanded: boolean = true;
+  public finTechExpanded: boolean = true;
 
   @ViewChild('first_nameL', { read: true, static: true}) first_nameL: ElementRef;
 
@@ -49,6 +51,11 @@ export class MenuFormComponent implements OnInit {
   }
 
   hrShowHide(val: boolean) {
+    if (this.hrExpanded == true) {
+      this.hrExpanded = false;
+    } else {
+      this.hrExpanded = true;
+    }
     this.model.first_nameV = val.toString();
     this.model.first_nameL = val.toString();
     this.model.middle_nameV = val.toString();
@@ -80,6 +87,11 @@ export class MenuFormComponent implements OnInit {
   }
 
   healthShowHide(val: boolean) {
+    if (this.healthExpanded == true) {
+      this.healthExpanded = false;
+    } else {
+      this.healthExpanded = true;
+    }
     this.model.dxV = val.toString();
     this.model.dxL = val.toString();
     this.model.rxV = val.toString();
@@ -95,11 +107,29 @@ export class MenuFormComponent implements OnInit {
   }
 
   finTechShowHide(val: boolean) {
+    if (this.finTechExpanded == true) {
+      this.finTechExpanded = false;
+    } else {
+      this.finTechExpanded = true;
+    }
     this.model.nonPciAcctV = val.toString();
     this.model.nonPciAcctL = val.toString();
     this.model.nonPciSecDigitzV = val.toString();
     this.model.nonPciSecDigitzL = val.toString();
   }
+
+  /*adjustPosition(hrExpanded: boolean) {
+    if (hrExpanded == true) {
+      var collapserrow = document.getElementById('collapserrow');
+      document.getElementById('collapserrow').remove();
+      var ourTbody = document.getElementsByTagName('tbody')[0];
+      var newTbodyHtml = '<tr id="collapserrow" #collapserrow>' + collapserrow.innerHTML + '</tr>' + ourTbody.innerHTML;
+      ourTbody.innerHTML = newTbodyHtml;
+      this.hrExpanded = false;
+    } else {
+      this.hrExpanded = true;
+    }
+  }*/
 
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.model); }
