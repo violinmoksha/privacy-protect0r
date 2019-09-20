@@ -64,8 +64,6 @@ export class ReportGenerationService {
       }
     });
 
-    console.log(params);
-
     return this.http.post('http://localhost:3000/api/v1/make_report?'+params.toString(), {}, {
       responseType: "blob",
       headers: new HttpHeaders().append("Content-Type", "application/xlsx")
