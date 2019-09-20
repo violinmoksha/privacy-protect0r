@@ -5,4 +5,13 @@ table.dataTable thead .sorting {
   background-image: none !important;
 }
 
+table.dataTable tbody {
+  border-top:0px !important;
+}
+
+table.dataTable tbody tr {
+  border-top:0px !important;
+  border-bottom:0px !important;
+}
+
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
