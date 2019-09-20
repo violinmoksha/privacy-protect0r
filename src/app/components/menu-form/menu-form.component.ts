@@ -6,6 +6,8 @@ import { ReportGenerationService } from '../../services/report-generation.servic
 
 import { saveAs } from 'file-saver';
 
+import { JoyrideService }from 'ngx-joyride';
+
 @Component({
   selector: 'app-menu-form',
   templateUrl: './menu-form.component.html',
@@ -21,7 +23,7 @@ export class MenuFormComponent implements OnInit {
 
   @ViewChild('first_nameL', { read: true, static: true}) first_nameL: ElementRef;
 
-  constructor(private _reportGenerationService: ReportGenerationService, private _cdr: ChangeDetectorRef, private zone: NgZone) {
+  constructor(private _reportGenerationService: ReportGenerationService, private _cdr: ChangeDetectorRef, private zone: NgZone, private readonly joyrideService: JoyrideService) {
     this.model = new PIMenu();
   }
 
@@ -53,6 +55,7 @@ export class MenuFormComponent implements OnInit {
   hrShowHide(val: boolean) {
     if (this.hrExpanded == true) {
       this.hrExpanded = false;
+      this.joyrideService.startTour({ steps: ['firstStep', 'secondStep', 'thirdStep']});
     } else {
       this.hrExpanded = true;
     }
@@ -89,6 +92,7 @@ export class MenuFormComponent implements OnInit {
   healthShowHide(val: boolean) {
     if (this.healthExpanded == true) {
       this.healthExpanded = false;
+      this.joyrideService.startTour({ steps: ['firstStep', 'secondStep', 'thirdStep']});
     } else {
       this.healthExpanded = true;
     }
@@ -109,6 +113,7 @@ export class MenuFormComponent implements OnInit {
   finTechShowHide(val: boolean) {
     if (this.finTechExpanded == true) {
       this.finTechExpanded = false;
+      this.joyrideService.startTour({ steps: ['firstStep', 'secondStep', 'thirdStep']});
     } else {
       this.finTechExpanded = true;
     }

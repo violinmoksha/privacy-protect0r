@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DataTablesModule } from 'angular-datatables';
 import { MenuFormComponent } from './components/menu-form/menu-form.component';
+import { JoyrideModule } from 'ngx-joyride';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MenuFormComponent } from './components/menu-form/menu-form.component';
     DataTablesModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    JoyrideModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
