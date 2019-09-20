@@ -7,6 +7,10 @@ import { ReportGenerationService } from '../../services/report-generation.servic
 import { saveAs } from 'file-saver';
 
 import { JoyrideService }from 'ngx-joyride';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-menu-form',

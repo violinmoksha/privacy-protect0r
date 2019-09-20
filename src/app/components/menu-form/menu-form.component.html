@@ -201,6 +201,14 @@
       </tbody>
     </table>
 
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Schedule USPS Delivery">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <br><br>
+
     <button type="submit" class="btn btn-success">Submit</button>
 
     <div joyrideStep="firstStep" title="Helpful Hints #1" text="Hi, Welcome to Privacy Protect0r report generation application! I was developed in Angular with a NodeJS/ExpressJS server stack. Enjoy!"></div>

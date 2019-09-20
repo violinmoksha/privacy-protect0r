@@ -7,6 +7,13 @@ import { AppComponent } from './app.component';
 import { DataTablesModule } from 'angular-datatables';
 import { MenuFormComponent } from './components/menu-form/menu-form.component';
 import { JoyrideModule } from 'ngx-joyride';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/esm2015/core';
 
 @NgModule({
   declarations: [
@@ -20,6 +27,13 @@ import { JoyrideModule } from 'ngx-joyride';
     HttpClientModule,
     AppRoutingModule,
     JoyrideModule.forRoot(),
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
