@@ -52,10 +52,13 @@ export class MenuFormComponent implements OnInit {
       })
   }
 
+  joyrideActivate() {
+    this.joyrideService.startTour({ steps: ['firstStep', 'secondStep', 'thirdStep', 'fourthStep']});
+  }
+
   hrShowHide(val: boolean) {
     if (this.hrExpanded == true) {
       this.hrExpanded = false;
-      this.joyrideService.startTour({ steps: ['firstStep', 'secondStep', 'thirdStep']});
     } else {
       this.hrExpanded = true;
     }
@@ -92,7 +95,6 @@ export class MenuFormComponent implements OnInit {
   healthShowHide(val: boolean) {
     if (this.healthExpanded == true) {
       this.healthExpanded = false;
-      this.joyrideService.startTour({ steps: ['firstStep', 'secondStep', 'thirdStep']});
     } else {
       this.healthExpanded = true;
     }
@@ -113,7 +115,6 @@ export class MenuFormComponent implements OnInit {
   finTechShowHide(val: boolean) {
     if (this.finTechExpanded == true) {
       this.finTechExpanded = false;
-      this.joyrideService.startTour({ steps: ['firstStep', 'secondStep', 'thirdStep']});
     } else {
       this.finTechExpanded = true;
     }

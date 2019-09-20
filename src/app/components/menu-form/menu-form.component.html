@@ -1,9 +1,35 @@
 <div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">Intake <span class="glyphicon glyphicon-file"></span></li>
+      <li class="breadcrumb-item">Verification <span class="glyphicon glyphicon-check"></span></li>
+      <li class="breadcrumb-item">Data Collection <span class="glyphicon glyphicon-list-alt"></span></li>
+      <li class="breadcrumb-item active"><a href="#">Report Generation <span class="glyphicon glyphicon-download-alt"></span></a></li>
+      <li class="breadcrumb-item">Legal Review <span class="glyphicon glyphicon-user"></span></li>
+      <li class="breadcrumb-item">Delivery <span class="glyphicon glyphicon-circle-arrow-right"></span></li>
+    </ol>
+  </nav>
+
+  <!--<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Intake</a></li>
+      <li class="breadcrumb-item active">Library</li>
+    </ol>
+  </nav>
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Library</a></li>
+      <li class="breadcrumb-item active">Data</li>
+    </ol>
+  </nav>-->
+
   <form (ngSubmit)="onSubmit()" #menuForm="ngForm" style="margin-top:20px !important;">
-    <table datatable data-order='' class="row-border hover">
+    <table datatable data-order='' class="row-border hover" data-sortable="false">
       <thead style="font-size:18px;">
         <tr><th>&nbsp;</th>
-        <th>Category</th>
+        <th>Category   </th>
         <th>Label</th>
         <th>Value</th>
         <th>Show Label</th>
@@ -12,7 +38,7 @@
       <tbody>
           <tr>
             <td><input type="checkbox" checked (change)="hrShowHide(hrshowhide.checked)" #hrshowhide id="hrshowhide"></td>
-            <td><a class="btn btn-link" (click)="hrShowHide(hrExpanded == true ? false: true)"><span *ngIf="hrExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!hrExpanded" class="glyphicon glyphicon-chevron-right"></span>HR/PII</a></td>
+            <td><a class="btn btn-link" (click)="hrShowHide(hrExpanded == true ? false: true)"><span *ngIf="hrExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!hrExpanded" class="glyphicon glyphicon-chevron-right"></span>HR/PII</a><a class="btn btn-link" (click)="joyrideActivate()"><span class="glyphicon glyphicon-info-sign"></span></a></td>
             <td><label for="first_nameL">First Name</label></td>
             <td>Paul</td>
             <td><input type="checkbox" id="first_nameL" #first_nameL [checked]="hrshowhide.checked" name="first_nameL" (change)="model.first_nameL == 'true' ? model.first_nameL = 'false' : model.first_nameL = 'true'"></td>
@@ -24,7 +50,7 @@
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><label for="middle_nameL">Middle Name</label></td>
-          <td>&lt;redacted&gt;</td>
+          <td>Edwin</td>
           <td><input type="checkbox" id="middle_nameL" #middle_nameL [checked]="hrshowhide.checked" name="middle_nameL" (change)="model.middle_nameL == 'true' ? model.middle_nameL = 'false' : model.middle_nameL = 'true'"></td>
           <td><input type="checkbox" id="middle_nameV" [checked]="middle_nameL.checked && hrshowhide.checked" name="middle_nameV" (change)="model.middle_nameV == 'true' ? model.middle_nameV = 'false' : model.middle_nameV = 'true'"></td>
         </tr>
@@ -128,7 +154,7 @@
       <tbody>
         <tr>
           <td><input type="checkbox" checked (change)="healthShowHide(healthshowhide.checked)" #healthshowhide></td>
-          <td><a class="btn btn-link" (click)="healthShowHide(healthExpanded == true ? false: true)"><span *ngIf="healthExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!healthExpanded" class="glyphicon glyphicon-chevron-right"></span>Health/PHI</a></td>
+          <td><a class="btn btn-link" (click)="healthShowHide(healthExpanded == true ? false: true)"><span *ngIf="healthExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!healthExpanded" class="glyphicon glyphicon-chevron-right"></span>Health/PHI</a><a class="btn btn-link" (click)="joyrideActivate()"><span class="glyphicon glyphicon-info-sign"></span></a></td>
           <td><label for="dxL">Medical Diagnosis</label></td>
           <td>Active Worker</td>
           <td><input type="checkbox" id="dxL" #dxL [checked]="healthshowhide.checked" name="dxL" (change)="model.dxL == 'true' ? model.dxL = 'false' : model.dxL = 'true'"></td>
@@ -156,8 +182,8 @@
       <tbody>
         <tr>
           <td><input type="checkbox" checked (change)="finTechShowHide(fintechshowhide.checked)" #fintechshowhide></td>
-          <td><a class="btn btn-link" (click)="finTechShowHide(finTechExpanded == true ? false: true)"><span *ngIf="finTechExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!finTechExpanded" class="glyphicon glyphicon-chevron-right"></span>FinTech/PCI</a></td>
-          <td><label for="nonPciAcctL">PCI-Protected Acct</label></td>
+          <td><a class="btn btn-link" (click)="finTechShowHide(finTechExpanded == true ? false: true)"><span *ngIf="finTechExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!finTechExpanded" class="glyphicon glyphicon-chevron-right"></span>FinTech/PCI</a><a class="btn btn-link" (click)="joyrideActivate()"><span class="glyphicon glyphicon-info-sign"></span></a></td>
+          <td><label for="nonPciAcctL">PCI-Protected Account</label></td>
           <td>1234566</td>
           <td><input type="checkbox" id="nonPciAcctL" #nonPciAcctL [checked]="fintechshowhide.checked" name="nonPciAcctL" (change)="model.nonPciAcctL == 'true' ? model.nonPciAcctL = 'false' : model.nonPciAcctL = 'true'"></td>
           <td><input type="checkbox" id="nonPciAcctV" [checked]="nonPciAcctL.checked && fintechshowhide.checked" name="nonPciAcctV" (change)="model.nonPciAcctV == 'true' ? model.nonPciAcctV = 'false' : model.nonPciAcctV = 'true'"></td>
@@ -167,7 +193,7 @@
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><label for="nonPciSecDigitzV">PCI-Protected SecDigits</label></td>
+          <td><label for="nonPciSecDigitzV">PCI-Protected Security Code</label></td>
           <td>345</td>
           <td><input type="checkbox" id="nonPciSecDigitzL" #nonPciSecDigitzL [checked]="fintechshowhide.checked" name="nonPciSecDigitzL" (change)="model.nonPciSecDigitzL == 'true' ? model.nonPciSecDigitzL = 'false' : model.nonPciSecDigitzL = 'true'"></td>
           <td><input type="checkbox" id="nonPciSecDigitzV" [checked]="nonPciSecDigitzL.checked && fintechshowhide.checked" name="nonPciSecDigitzV" (change)="model.nonPciSecDigitzV == 'true' ? model.nonPciSecDigitzV = 'false' : model.nonPciSecDigitzV = 'true'"></td>
@@ -177,9 +203,11 @@
 
     <button type="submit" class="btn btn-success">Submit</button>
 
-    <div joyrideStep="firstStep" title="Demo Tour" text="Hi, Welcome to Privacy Protect0r!"></div>
-    <div style="position:absolute;left:15px;top:120px;" joyrideStep="secondStep" title="Demo Tour" text="You can filter in/out an entire Category over here!"></div>
-    <div styyle="position:absolute;left:560px;top:60px;;" joyrideStep="thirdStep" title="Demo Tour" text="Please note that if you de-select the Label that this removes the field with its Value from the generated report."></div>
+    <div joyrideStep="firstStep" title="Helpful Hints #1" text="Hi, Welcome to Privacy Protect0r report generation application! I was developed in Angular with a NodeJS/ExpressJS server stack. Enjoy!"></div>
+    <div style="position:absolute;left:15px;top:120px;" joyrideStep="secondStep" title="Helpful Hints #2" text="You can filter in/out an entire Category over here using the checkboxes in the far left column!"></div>
+    <div styyle="position:absolute;right:15px !important;top:120px;" joyrideStep="thirdStep" title="Helpful Hints #3" text="Please note that if you un-select a Label checkbox that this un-selects the respective Value checkbox and likewise removes the field with its Label-and-Value from the generated XLSX report."></div>
+    <div style="position:absolute;left:15px;bottom:120px;" joyrideStep="fourthStep" title="Helpful Hints #4" text="Upon clicking or tapping Submit you will receive an Excel document arranged according to your PrivacyProtect0r preferences!"></div>
+
     <!--<br><br>Diagnostic Form Data Debug: {{diagnostic}}-->
   </form>
 </div>
