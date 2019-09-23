@@ -3,9 +3,9 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item">Intake <span class="glyphicon glyphicon-file"></span></li>
       <li class="breadcrumb-item">Verification <span class="glyphicon glyphicon-check"></span></li>
-      <li class="breadcrumb-item">Data Collection <span class="glyphicon glyphicon-list-alt"></span></li>
-      <li class="breadcrumb-item active"><a href="#">Report Generation <span class="glyphicon glyphicon-download-alt"></span></a></li>
-      <li class="breadcrumb-item">Legal Review <span class="glyphicon glyphicon-user"></span></li>
+      <li class="breadcrumb-item"><a href="data-form">Data Collection <span class="glyphicon glyphicon-list-alt"></span></a></li>
+      <li class="breadcrumb-item active"><a href="#" style="text-decoration:underline !important">Report Generation <span class="glyphicon glyphicon-download-alt"></span></a></li>
+      <li class="breadcrumb-item">Final Review <span class="glyphicon glyphicon-user"></span></li>
       <li class="breadcrumb-item">Delivery <span class="glyphicon glyphicon-circle-arrow-right"></span></li>
     </ol>
   </nav>
@@ -200,12 +200,6 @@
         </tr>
       </tbody>
     </table>
-
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Schedule USPS Delivery">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
 
     <br><br>
 
