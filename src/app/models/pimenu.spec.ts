@@ -1,7 +1,7 @@
 import { PIMenu } from './pimenu';
 
 describe('PIMenu', () => {
-  let piMenu = new PIMenu("abcdefghijklmnopqr", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true");
+  let piMenu = new PIMenu();
 
   it('should create an instance', () => {
     expect(piMenu).toBeTruthy();

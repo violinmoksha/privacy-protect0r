@@ -10,212 +10,57 @@
     </ol>
   </nav>
 
-  <table datatable data-order='' class="hover" data-sortable="false" style="border-collapse:collapse">
-    <tbody>
-      <tr>
-        <td>
-          <mat-form-field>
-            <input type="text" placeholder="Status" matInput value="Pending-Review">
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field>
-            <input type="text" placeholder="Type" matInput value="Inquiry">
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field>
-            <input type="text" placeholder="Repeat Request?" matInput value="No">
-          </mat-form-field>
-        </td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>
-          <mat-form-field>
-            <input type="text" placeholder="First Name" matInput required>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field>
-            <input type="text" placeholder="Last Name" matInput required>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field>
-            <input style="width:120px" matInput [matDatepicker]="picker" placeholder="DOB">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field>
-            <input type="text" placeholder="TIN" matInput>
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <mat-form-field>
-            <input type="text" placeholder="Phone" matInput>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field>
-            <input type="text" placeholder="EMail" matInput>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field>
-            <input type="text" placeholder="FRB Acct#" matInput>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field>
-            <input type="text" placeholder="Requestor" matInput>
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <mat-form-field>
-            <input type="text" placeholder="Client Status" matInput required value="Prospect">
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field>
-            <input type="text" placeholder="Comments" matInput value="Client called to place req">
-          </mat-form-field>
-        </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td><button *ngIf="!secondRowShown" md-button-raised (click)="showMoreRows()">Collect More Fields(+)</button></td>
-        <td>
-          <mat-form-field style="width:300px">
-            <input type="text" placeholder="Select An Exposed Field" matInput [formControl]="myControl"
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option (onSelectionChange)="exposeFieldValueInput(option)" *ngFor="let option of options" [value]="option">
-                {{option}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </td>
-        <td *ngIf="firstValueExposed"><input type="text" matInput placeholder="{{optionSelection}}"></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr *ngIf="secondRowShown">
-        <td><button *ngIf="!thirdRowShown" md-button-raised (click)="showMoreRows()">Collect More Fields(+)</button></td>
-        <td>
-          <mat-form-field style="width:300px">
-            <input type="text" placeholder="Select An Exposed Field" matInput [formControl]="myControl"
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of options" [value]="option">
-                {{option}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field style="width:300px">
-            <input type="text" placeholder="Select An Exposed Field" matInput [formControl]="myControl"
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of options" [value]="option">
-                {{option}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field style="width:300px">
-            <input type="text" placeholder="Select An Exposed Field" matInput [formControl]="myControl"
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of options" [value]="option">
-                {{option}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr *ngIf="thirdRowShown">
-        <td><button *ngIf="!fourthRowShown" md-button-raised (click)="showMoreRows()">Collect More Fields(+)</button></td>
-        <td>
-          <mat-form-field style="width:300px">
-            <input type="text" placeholder="Select An Exposed Field" matInput [formControl]="myControl"
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of options" [value]="option">
-                {{option}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field style="width:300px">
-            <input type="text" placeholder="Select An Exposed Field" matInput [formControl]="myControl"
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of options" [value]="option">
-                {{option}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field style="width:300px">
-            <input type="text" placeholder="Select An Exposed Field" matInput [formControl]="myControl"
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of options" [value]="option">
-                {{option}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr *ngIf="fourthRowShown">
-        <td>&nbsp;</td>
-        <td>
-          <mat-form-field style="width:300px">
-            <input type="text" placeholder="Select An Exposed Field" matInput [formControl]="myControl"
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of options" [value]="option">
-                {{option}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field style="width:300px">
-            <input type="text" placeholder="Select An Exposed Field" matInput [formControl]="myControl"
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of options" [value]="option">
-                {{option}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field style="width:300px">
-            <input type="text" placeholder="Select An Exposed Field" matInput [formControl]="myControl"
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of options" [value]="option">
-                {{option}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <button type="submit" class="btn btn-success" style="margin-top:20px">Submit</button>
+  <fieldset style="border:1px dashed black;padding:5px;">
+    <legend style="border:none">Submitted Request</legend>
+    <div class="row">
+      <div class="col-xs-2">Status:</div><div class="col-xs-4">Pending-Review</div><div class="col-xs-2">Type:</div><div class="col-xs-4">Inquiry</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">Repeat Request:</div><div class="col-xs-10">No</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">First Name:</div><div class="col-xs-4">Paul</div><div class="col-xs-2">Last Name:</div><div class="col-xs-4">Yeager</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">DOB:</div><div class="col-xs-4">7/28/1981</div><div class="col-xs-2">TIN:</div><div class="col-xs-4">12-3456789</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">Phone:</div><div class="col-xs-4">252-235-8335</div><div class="col-xs-2">Email:</div><div class="col-xs-4">pyeager@firstrepublic.com</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">FRB Acct #:</div><div class="col-xs-4">000777302746</div><div class="col-xs-2">Requestor:</div><div class="col-xs-4">Account Holder</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">Client Status:</div><div class="col-xs-4">Active</div><div class="col-xs-2">Comments:</div><div class="col-xs-4">Please verify with RM.</div>
+    </div>
+  </fieldset>
+
+  <br>
+
+  <fieldset style="border-top:1px dashed black;border:1px dashed black;border-bottom:none;padding:5px;">
+    <legend style="border:none">Select Report Fields to Expose</legend>
+    <form [formGroup]="grp">
+      <table datatable data-order='' class="hover" data-sortable="false" style="border-collapse:collapse">
+        <tbody>
+          <tr *ngFor="let key of keysAsArr; let index = index" [hidden]="index > 0 && !hiddenRows[index]">
+            <td>
+              <mat-form-field style="width:300px">
+                <input type="text" placeholder="Select A Field to Expose" matInput [formControl]="grp[key]"
+                  [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChanged($event, index)">
+                  <mat-option *ngFor="let val of filteredValues" [value]="val">
+                    {{val}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </td>
+            <td><input type="text" matInput [value]="optionSelection[index] || ''"></td>
+            <td>{{catSelection[index]}}</td>
+            <td><input type="button" md-button-raised (click)="showMoreRows(index)" value="Collect More Fields(+)"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-success" style="margin-top:20px" (click)="onSubmit()">Submit</button>
+    </form>
+  </fieldset>
 </div>

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { PIValues } from '../../models/pivalues';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-data-form',
@@ -8,63 +10,71 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
   styleUrls: ['./data-form.component.scss']
 })
 export class DataFormComponent implements OnInit {
-  public myControl: FormControl;
-  public options: string[] = [
-    "First Name",
-    "Middle Name",
-    "Last Name",
-    "EMail",
-    "Phone",
-    "Zipcode",
-    "Code of the Day",
-    "Social Media Profile URL",
-    "Social Security Number",
-    "Driver's License",
-    "Passport Number",
-    "Passport Nation",
-    "Age",
-    "Other Names Used in the Past", // pii
-    "Medical Diagnosis",
-    "Medical Prescription",
-    "Blood Group",
-    "Government Food Subsistence", // phi
-    "Non PCI-Protected Account ID",
-    "Non PCI-Protected Security Code"
-  ];
-  public secondRowShown: boolean = false;
-  public thirdRowShown: boolean = false;
-  public fourthRowShown: boolean = false;
+  public grp: FormGroup;
+  public vals: PIValues;
+  public valsAsArr: any;
+  public keysAsArr: any;
+  public optionSelection: any = [''];
+  public optionsAsCats: any = {
+    'HR/PII': ["First Name", "Middle Name", "Last Name", "EMail", "Phone", "Zipcode", "Code of the Day", "Social Media Profile URL", "Social Security Number", "Driver's License", "Passport Number", "Passport Nation", "Age", "Other Names Used in the Past"],
+    'Health/PHI': ["Medical Diagnosis", "Medical Prescription", "Blood Group", "Government Food Subsistence"],
+    'FinTech/PCI': ["Non PCI-Protected Account ID", "Non PCI-Protected Security Code"]
+  };
+  public catSelection: any = [''];
+  public hiddenRows: any = [true];
+  public filteredValues: any = [];
 
-  public optionSelection: string;
+  constructor(private router: Router, private cdr: ChangeDetectorRef) {
+    this.vals = new PIValues();
+    this.grp = new FormGroup({});
+    this.valsAsArr = [];
+    this.keysAsArr = [];
 
-  public firstValueExposed: boolean = false;
+    let ct = 0;
+    Object.keys(this.vals).forEach(key => {
+      this.grp[key] = new FormControl('', Validators.required);
+      this.grp[key].valueChanges.subscribe(newValue => {
+        this.filteredValues = this.filterValues(newValue);
+      });
+      this.valsAsArr.push(Object.values(this.vals)[ct++]);
+      this.keysAsArr.push(key);
+    })
 
-  constructor() {
-    this.myControl = new FormControl();
+    //console.log(this.valsAsArr);
+    //console.log(Object.values(this.vals));
   }
 
   ngOnInit() {
   }
 
-  exposeFieldValueInput(opt: any) {
-    // TODO: sub-function for all field patterns f.e. phone as +1 (123) 456-7890 etc.
-    if (!this.firstValueExposed) {
-      this.firstValueExposed = true;
-      this.optionSelection = opt;
+  exposeFieldValueInput(option: string, ix: number) {
+    this.optionSelection[ix] = option;
+    if (this.optionsAsCats['HR/PII'].indexOf(option) !== -1) {
+      this.catSelection[ix] = 'Data Category: HR/PII';
+    } else if (this.optionsAsCats['Health/PHI'].indexOf(option) !== -1) {
+      this.catSelection[ix] = 'Data Category: Health/PHI';
+    } else if (this.optionsAsCats['FinTech/PCI'].indexOf(option) !== -1) {
+      this.catSelection[ix] = 'Data Category: FinTech/PCI';
     }
+    //this.cdr.detectChanges();
   }
 
-  showMoreRows() { // ridiculous straw-house recursion h3h
-    if (!this.secondRowShown) {
-      this.secondRowShown = true;
-    } else {
-      if (!this.thirdRowShown) {
-        this.thirdRowShown = true;
-      } else {
-        if (!this.fourthRowShown) {
-          this.fourthRowShown = true;
-        }
-      }
-    }
+  onSelectionChanged(event: MatAutocompleteSelectedEvent, index: number) {
+    this.exposeFieldValueInput(event.option.value, index);
+    console.log(this.optionSelection);
+  }
+
+  showMoreRows(ix) {
+    console.log(this.hiddenRows);
+    this.hiddenRows[ix+1] = true;
+  }
+
+  filterValues(search: string) {
+    return this.valsAsArr.filter( value =>
+      value.toLowerCase().indexOf(search.toLowerCase()) === 0);
+  }
+
+  onSubmit() {
+    this.router.navigateByUrl('/menu-form');
   }
 }
