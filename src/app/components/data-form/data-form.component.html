@@ -39,7 +39,7 @@
 
   <fieldset style="border-top:1px dashed black;border:1px dashed black;border-bottom:none;padding:5px;">
     <legend style="border:none">Select Report Fields to Expose</legend>
-    <form [formGroup]="grp">
+    <form [formGroup]="grp" id="dataForm" name="dataForm" #dataForm novalidate>
       <table datatable data-order='' class="hover" data-sortable="false" style="border-collapse:collapse">
         <tbody>
           <tr *ngFor="let key of keysAsArr; let index = index" [hidden]="index > 0 && !hiddenRows[index]">
@@ -60,7 +60,7 @@
           </tr>
         </tbody>
       </table>
-      <button type="submit" class="btn btn-success" style="margin-top:20px" (click)="onSubmit()">Submit</button>
+      <button type="submit" class="btn btn-success" style="margin-top:20px" [disabled]="dataForm.invalid" (click)="onSubmit(dataForm)">Submit</button>
     </form>
   </fieldset>
 </div>

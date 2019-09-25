@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { PIValues } from '../../models/pivalues';
 import { Router } from '@angular/router';
@@ -23,6 +23,7 @@ export class DataFormComponent implements OnInit {
   public catSelection: any = [''];
   public hiddenRows: any = [true];
   public filteredValues: any = [];
+  public formMissesValues: boolean = false;
 
   constructor(private router: Router, private cdr: ChangeDetectorRef) {
     this.vals = new PIValues();
@@ -32,7 +33,7 @@ export class DataFormComponent implements OnInit {
 
     let ct = 0;
     Object.keys(this.vals).forEach(key => {
-      this.grp[key] = new FormControl('', Validators.required);
+      this.grp[key] = new FormControl('', [Validators.required, this.validateRequired(key)]);
       this.grp[key].valueChanges.subscribe(newValue => {
         this.filteredValues = this.filterValues(newValue);
       });
@@ -56,25 +57,40 @@ export class DataFormComponent implements OnInit {
     } else if (this.optionsAsCats['FinTech/PCI'].indexOf(option) !== -1) {
       this.catSelection[ix] = 'Data Category: FinTech/PCI';
     }
-    //this.cdr.detectChanges();
+    this.cdr.detectChanges();
   }
 
   onSelectionChanged(event: MatAutocompleteSelectedEvent, index: number) {
     this.exposeFieldValueInput(event.option.value, index);
-    console.log(this.optionSelection);
+    //console.log(this.optionSelection);
   }
 
   showMoreRows(ix) {
-    console.log(this.hiddenRows);
+    //console.log(this.hiddenRows);
     this.hiddenRows[ix+1] = true;
   }
 
   filterValues(search: string) {
-    return this.valsAsArr.filter( value =>
-      value.toLowerCase().indexOf(search.toLowerCase()) === 0);
+    return this.valsAsArr.filter(value => value.toLowerCase().indexOf(search.toLowerCase()) >= 0);
   }
 
-  onSubmit() {
-    this.router.navigateByUrl('/menu-form');
+  onSubmit(dataForm) {
+    console.log(dataForm);
+    //this.router.navigateByUrl('/menu-form');
   }
+
+  validateRequired(fieldControlName): ValidatorFn {
+    return (control: AbstractControl): {
+      [key: string]: any
+    } => {
+      if (control.value) {
+        return null;
+      } else {
+        return {
+          'popd': true
+        }
+      }
+    };
+  }
+
 }
