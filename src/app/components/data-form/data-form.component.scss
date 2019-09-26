@@ -1,0 +1,42 @@
+.field-value {
+  width: 225px;
+}
+
+.label-bold {
+  font-weight:bold;
+}
+
+.glyphicon.glyphicon-ok-circle {
+  color:green !important;
+}
+
+.glyphicon.glyphicon-edit {
+  color:red !important;
+}
+
+.glyphicon.glyphicon-comment {
+  color:purple !important;
+}
+
+.glyphicon.glyphicon-info-sign {
+  color:blue !important;
+}
+
+.glyphicon.glyphicon-knight {
+  color:grey !important;
+}
+
+.glyphicon.glyphicon-user {
+  color:orange !important;
+}
+
+.glyphicon.glyphicon-remove {
+  color:red !important;
+  margin-left:10px;
+  cursor: pointer !important;
+}
+
+.opacity {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}

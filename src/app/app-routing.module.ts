@@ -4,6 +4,7 @@ import { MenuFormComponent } from './components/menu-form/menu-form.component'
 import { DataFormComponent } from './components/data-form/data-form.component'
 
 const routes: Routes = [
+  { path: '', redirectTo: '/data-form', pathMatch: 'full' },
   {
     path: 'menu-form',
     component: MenuFormComponent

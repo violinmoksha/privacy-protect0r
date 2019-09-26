@@ -16,12 +16,20 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/esm2015/core';
 import { DataFormComponent } from './components/data-form/data-form.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FRBBizAttributionComponent } from './components/data-form/FRBBizAttributeComponent-snack';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuFormComponent,
-    DataFormComponent
+    DataFormComponent,
+    ConfirmationDialogComponent,
+    FRBBizAttributionComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +46,15 @@ import { DataFormComponent } from './components/data-form/data-form.component';
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent,
+    FRBBizAttributionComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

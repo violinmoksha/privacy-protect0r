@@ -1,4 +1,4 @@
-<div class="container">
+<div [className]="spinnerShown ? 'container opacity' : 'container'">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item">Intake <span class="glyphicon glyphicon-file"></span></li>
@@ -11,41 +11,67 @@
   </nav>
 
   <fieldset style="border:1px dashed black;padding:5px;">
-    <legend style="border:none">Submitted Request</legend>
-    <div class="row">
-      <div class="col-xs-2">Status:</div><div class="col-xs-4">Pending-Review</div><div class="col-xs-2">Type:</div><div class="col-xs-4">Inquiry</div>
+    <legend *ngIf="!reqDetailsIsCollapsed" (click)="reqDetailsIsCollapsed = true" style="cursor:pointer !important; border:none">&#9660; Request Details</legend>
+    <legend *ngIf="reqDetailsIsCollapsed" (click)="reqDetailsIsCollapsed = false" style="cursor:pointer !important; border:none">&#9658; Request Details</legend>
+    <div *ngIf="!reqDetailsIsCollapsed" style="width:90%;margin:0 auto;margin-bottom:10px;">
+      <div class="row">
+        <div class="col-xs-2 label-bold">Status:</div><div class="col-xs-4">Pending-Review <span class="glyphicon glyphicon-edit"></span></div><div class="col-xs-2 label-bold">Type:</div><div class="col-xs-4">Inquiry</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-2 label-bold">Repeat Request:</div><div class="col-xs-10">No</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-2 label-bold">First Name:</div><div class="col-xs-4">Paul</div><div class="col-xs-2 label-bold">Last Name:</div><div class="col-xs-4">Yeager</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-2 label-bold">DOB:</div><div class="col-xs-4">7/28/1981</div><div class="col-xs-2 label-bold">TIN:</div><div class="col-xs-4">12-3456789</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-2 label-bold">Phone:</div><div class="col-xs-4">252-235-8335</div><div class="col-xs-2 label-bold">Email:</div><div class="col-xs-4">pyeager@firstrepublic.com</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-2 label-bold">FRB Acct #:</div><div class="col-xs-4">000777302746 <span class="glyphicon glyphicon-knight" (click)="openSnackBar()"></span></div><div class="col-xs-2 label-bold">Requestor:</div><div class="col-xs-4">Account Holder <span class="glyphicon glyphicon-user"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-2 label-bold">Client Status:</div><div class="col-xs-4">Active <span class="glyphicon glyphicon-ok-circle"></span></div><div class="col-xs-2 label-bold">Comments:</div><div class="col-xs-4">Please verify with RM ( <span class="glyphicon glyphicon-comment" matTooltip="... and also with Access Management" aria-label="Button that displays a tooltip with the additional comments when hovered or clicked"></span> )</div>
+      </div>
     </div>
-    <div class="row">
-      <div class="col-xs-2">Repeat Request:</div><div class="col-xs-10">No</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-2">First Name:</div><div class="col-xs-4">Paul</div><div class="col-xs-2">Last Name:</div><div class="col-xs-4">Yeager</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-2">DOB:</div><div class="col-xs-4">7/28/1981</div><div class="col-xs-2">TIN:</div><div class="col-xs-4">12-3456789</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-2">Phone:</div><div class="col-xs-4">252-235-8335</div><div class="col-xs-2">Email:</div><div class="col-xs-4">pyeager@firstrepublic.com</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-2">FRB Acct #:</div><div class="col-xs-4">000777302746</div><div class="col-xs-2">Requestor:</div><div class="col-xs-4">Account Holder</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-2">Client Status:</div><div class="col-xs-4">Active</div><div class="col-xs-2">Comments:</div><div class="col-xs-4">Please verify with RM.</div>
+  </fieldset>
+
+  <br>
+
+  <fieldset style="border:1px dashed black;padding:5px;">
+    <legend *ngIf="!reqActivityIsCollapsed" (click)="reqActivityIsCollapsed = true" style="cursor:pointer !important;border:none">&#9660; Request Activity</legend>
+    <legend *ngIf="reqActivityIsCollapsed" (click)="reqActivityIsCollapsed = false" style="cursor:pointer !important;border:none">&#9658; Request Activity</legend>
+    <div *ngIf="!reqActivityIsCollapsed" style="width:90%;margin:0 auto;margin-bottom:10px;">
+      <div class="row" style="border-bottom:1px solid black;font-weight:bold;">
+        <div class="col-xs-2">User</div>
+        <div class="col-xs-2">Role</div>
+        <div class="col-xs-2">Action</div>
+        <div class="col-xs-3">Comments</div>
+        <div class="col-xs-3">Time</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-2">pyeager</div>
+        <div class="col-xs-2">Developer</div>
+        <div class="col-xs-2">Add Note</div>
+        <div class="col-xs-3">Approving this following ( ...<span class="glyphicon glyphicon-info-sign" matTooltip="..., the code review of which I did on Thursday evening and found a buffer overrun bug at line 2983 of menu-form.ts thus am following up tomorrow." aria-label="Button that displays a tooltip with the additional comments when hovered or clicked"></span> )</div>
+        <div class="col-xs-3">9/25/209 07:25:10 AM PDT</div>
+      </div>
     </div>
   </fieldset>
 
   <br>
 
   <fieldset style="border-top:1px dashed black;border:1px dashed black;border-bottom:none;padding:5px;">
-    <legend style="border:none">Select Report Fields to Expose</legend>
+    <legend style="border:none">&#9660; Data Collection</legend>
     <form [formGroup]="grp" id="dataForm" name="dataForm" #dataForm novalidate>
       <table datatable data-order='' class="hover" data-sortable="false" style="border-collapse:collapse">
         <tbody>
           <tr *ngFor="let key of keysAsArr; let index = index" [hidden]="index > 0 && !hiddenRows[index]">
-            <td>
+            <td style="width:100px">
               <mat-form-field style="width:300px">
-                <input type="text" placeholder="Select A Field to Expose" matInput [formControl]="grp[key]"
+                <input type="text" placeholder="Start Typing the Field Name" matInput [formControl]="grp[key]"
                   [matAutocomplete]="auto">
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChanged($event, index)">
                   <mat-option *ngFor="let val of filteredValues" [value]="val">
@@ -54,13 +80,24 @@
                 </mat-autocomplete>
               </mat-form-field>
             </td>
-            <td><input type="text" matInput [value]="optionSelection[index] || ''"></td>
-            <td>{{catSelection[index]}}</td>
-            <td><input type="button" md-button-raised (click)="showMoreRows(index)" value="Collect More Fields(+)"></td>
+            <td>
+              <mat-form-field>
+                <input type="text" matInput class="field-value" placeholder="Field Value" [value]="optionSelection[index] || '' || maskedPhone" (click)="$event.target.value = ''; $event.target.placeholder = ''" [formControl]="grp[key+'_value']" name="{{key+'_value'}}">
+              </mat-form-field>
+            </td>
+            <td>{{catSelection[index] || 'Category Name'}}</td>
+            <td><input type="button" md-button-raised (click)="showMoreRows(index)" value="Collect More Fields(+)"><span *ngIf="index > 0" (click)="hideRow(index)" class="glyphicon glyphicon-remove" matTooltip="Click/Tap to Remove the Field"></span></td>
           </tr>
         </tbody>
       </table>
-      <button type="submit" class="btn btn-success" style="margin-top:20px" [disabled]="dataForm.invalid" (click)="onSubmit(dataForm)">Submit</button>
+      <div style="margin-top:20px;">
+        <button type="submit" class="btn btn-success" style="float:left;margin-right:5px;" [disabled]="dataForm.invalid" (click)="onSubmit(dataForm)">Submit</button>
+        <button type="submit" class="btn btn-primary" style="float:left;margin-right:5px;" (click)="spinnerShownFakeOut()">Save Draft</button>
+        <button type="cancel" class="btn btn-danger" style="float:right" (click)="openDialog()">Cancel</button>
+      </div>
+      <div style="clear:both"></div>
     </form>
   </fieldset>
 </div>
+
+<mat-progress-spinner *ngIf="spinnerShown" style="margin:-100px auto;" mode="indeterminate"></mat-progress-spinner>
