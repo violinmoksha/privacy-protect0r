@@ -10,6 +10,7 @@ import { JoyrideModule } from 'ngx-joyride';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,6 +23,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FRBBizAttributionComponent } from './components/data-form/FRBBizAttributeComponent-snack';
+import { MdePopoverModule } from '@material-extended/mde';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { FRBBizAttributionComponent } from './components/data-form/FRBBizAttribu
     MatTooltipModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MdePopoverModule,
+    MatCardModule
   ],
   entryComponents: [
     ConfirmationDialogComponent,

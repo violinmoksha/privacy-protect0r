@@ -54,6 +54,9 @@ export class DataFormComponent implements OnInit {
   };
   public maskedPhone: string = '';
   public spinnerShown = false;
+  public alertHide = false;
+  public phoneMaskEnable: boolean = false;
+  public ssnMaskEnable: boolean = false;
 
   @Input('phone_value') phoneInput: HTMLInputElement;
 
@@ -79,11 +82,6 @@ export class DataFormComponent implements OnInit {
         this.grp[key+'_value'] = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]);
       } else if (key == 'phone') {
         this.grp[key+'_value'] = new FormControl('', [Validators.required, Validators.maxLength(14), Validators.minLength(14)]);
-        // and mask it nicely, WIP
-        /*this.grp[key+'_value'].ngModelChange.subscribe(newValue => {
-          console.log(newValue);
-          this.phoneInput.value = this.maskUSPhone(newValue);
-        });*/
       }
 
 
@@ -119,6 +117,17 @@ export class DataFormComponent implements OnInit {
   onSelectionChanged(event: MatAutocompleteSelectedEvent, index: number) {
     this.exposeFieldValueInput(event.option.value, index);
     //console.log(this.optionSelection);
+
+    if (event.option.value == 'Phone') {
+      this.phoneMaskEnable = true;
+      this.ssnMaskEnable = false;
+    } else if (event.option.value == 'Social Security Number') {
+      this.phoneMaskEnable = false;
+      this.ssnMaskEnable = true;
+    } else {
+      this.phoneMaskEnable = false;
+      this.ssnMaskEnable = false;
+    }
   }
 
   showMoreRows(ix) {
@@ -162,6 +171,13 @@ export class DataFormComponent implements OnInit {
     return txt;
   }
 
+  maskSSN(txt) {
+    let x = txt.replace(/[^0-9]/g, '').match(/(\d{0,3})(\d{0,2})(\d{0,4})/);
+    txt = !x[2] ? x[1] : x[1] + '-' + x[2] + (x[3] ? '-' + x[3] : '');
+
+    return txt;
+  }
+
   @HostListener("ngModelChange", ["$event"]) onNgModelChange(newValue) {
     //console.log('got it');
     this.elementRef.nativeElement.value = this.maskUSPhone(newValue);
@@ -191,4 +207,6 @@ export class DataFormComponent implements OnInit {
       duration: 5000,
     });
   }
+
+  doNothing() {}
 }
