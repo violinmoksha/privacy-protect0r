@@ -30,7 +30,7 @@
         <div class="col-xs-2 label-bold">Phone:</div><div class="col-xs-4">252-235-8335</div><div class="col-xs-2 label-bold">Email:</div><div class="col-xs-4">pyeager@firstrepublic.com</div>
       </div>
       <div class="row">
-        <div class="col-xs-2 label-bold">FRB Acct #:</div><div class="col-xs-4">000777302746 <span class="glyphicon glyphicon-knight" (click)="openSnackBar()"></span></div><div class="col-xs-2 label-bold">Requestor:</div><div class="col-xs-4">Account Holder <span class="glyphicon glyphicon-user"></span></div>
+        <div class="col-xs-2 label-bold">FRB Acct #:</div><div class="col-xs-4">000777302746 <span class="glyphicon glyphicon-knight" (click)="openSnackBar()"></span></div><div class="col-xs-2 label-bold">Requestor:</div><div class="col-xs-4">Account Holder <span class="glyphicon glyphicon-user orange"></span></div>
       </div>
       <div class="row">
         <div class="col-xs-2 label-bold">Client Status:</div><div class="col-xs-4">Active <span class="glyphicon glyphicon-ok-circle"></span></div><div class="col-xs-2 label-bold">Comments:</div><div class="col-xs-4">Please verify with RM ( <span class="glyphicon glyphicon-comment" matTooltip="... and also with Access Management" aria-label="Button that displays a tooltip with the additional comments when hovered or clicked"></span> )</div>
@@ -82,7 +82,7 @@
             </td>
             <td>
               <mat-form-field>
-                <input type="text" matInput class="field-value" placeholder="Field Value" [value]="optionSelection[index] || '' || maskedPhone" (click)="$event.target.value = ''; $event.target.placeholder = ''" [formControl]="grp[key+'_value']" name="{{key+'_value'}}">
+                <input type="text" matInput class="field-value" placeholder="Field Value" [value]="optionSelection[index] || '' || maskedPhone" (click)="$event.target.value = ''; $event.target.placeholder = ''"  name="{{key+'_value'}}">
               </mat-form-field>
             </td>
             <td>{{catSelection[index] || 'Category Name'}}</td>
