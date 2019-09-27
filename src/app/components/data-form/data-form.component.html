@@ -121,22 +121,35 @@
             </td>
             <td>
               <mat-form-field>
-                <input type="text" matInput class="field-value" placeholder="Field Value" [value]="optionSelection[index] || '' || maskedPhone" (click)="$event.target.value = ''; $event.target.placeholder = ''"  name="{{key+'_value'}}" (input)="phoneMaskEnable ? $event.target.value = maskUSPhone($event.target.value) : doNothing(); ssnMaskEnable ? $event.target.value = maskSSN($event.target.value) : doNothing()">
+                <input type="text"
+                  matInput
+                  class="field-value"
+                  placeholder="Field Value"
+                  [value]="optionSelection[index] || '' || maskedPhone"
+                  [(ngModel)]="inputNgModels[index]" [name]="inputNgNames[index]"
+                  (click)="$event.target.value = ''; $event.target.placeholder = ''"
+                  (input)="phoneMaskEnable ? $event.target.value = maskUSPhone($event.target.value) : denada();
+                    ssnMaskEnable ? $event.target.value = maskSSN($event.target.value) : denada()">
               </mat-form-field>
             </td>
             <td>{{catSelection[index] || 'Category Name'}}</td>
-            <td><input type="button" md-button-raised (click)="showMoreRows(index)" value="Collect More Fields(+)"><span *ngIf="index > 0" (click)="hideRow(index)" class="glyphicon glyphicon-remove" matTooltip="Click/Tap to Remove the Field"></span></td>
+            <td><input type="button" md-button-raised (click)="showMoreRows(index)" value="Add More Fields(+)"><span *ngIf="index > 0" (click)="hideRow(index)" class="glyphicon glyphicon-remove" matTooltip="Click/Tap to Remove the Field"></span></td>
           </tr>
         </tbody>
       </table>
       <div style="margin-top:20px;">
         <button type="submit" class="btn btn-success" style="float:left;margin-right:5px;" [disabled]="dataForm.invalid" (click)="onSubmit(dataForm)">Submit</button>
         <button type="submit" class="btn btn-primary" style="float:left;margin-right:5px;" (click)="spinnerShownFakeOut()">Save Draft</button>
-        <button type="cancel" class="btn btn-danger" style="float:right" (click)="openDialog()">Cancel</button>
+        <button type="cancel" class="btn btn-danger" style="float:right" (click)="openDialog()">Reset</button>
       </div>
       <div style="clear:both"></div>
     </form>
   </fieldset>
 </div>
 
-<mat-progress-spinner *ngIf="spinnerShown" style="margin:-100px auto;" mode="indeterminate"></mat-progress-spinner>
+<mat-progress-spinner *ngIf="spinnerShown" style="margin:-225px auto;" mode="indeterminate"></mat-progress-spinner>
+
+<!--TODO: random field gets highlight on blur to suggestToDictionary-->
+
+<!-- in menu-form: src system/SAN column, (2) w src col, multis r collate with link to ux for multis -->
+<!-- also in menu-form: redundancy elim and/or label/val typography -->

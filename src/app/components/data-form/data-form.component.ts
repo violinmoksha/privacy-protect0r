@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef, HostListener, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { NgModel, FormControl, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { PIValues } from '../../models/pivalues';
 import { Router } from '@angular/router';
@@ -57,8 +57,10 @@ export class DataFormComponent implements OnInit {
   public alertHide = false;
   public phoneMaskEnable: boolean = false;
   public ssnMaskEnable: boolean = false;
-
-  @Input('phone_value') phoneInput: HTMLInputElement;
+  public dynamicInputName: string = '';
+  public myFormControlName: string = '';
+  public inputNgModels: any = [];
+  public inputNgNames: any = [];
 
   constructor(private router: Router, private cdr: ChangeDetectorRef, private elementRef:ElementRef, public dialog: MatDialog, private snackBar: MatSnackBar) {
     this.vals = new PIValues();
@@ -74,19 +76,12 @@ export class DataFormComponent implements OnInit {
       });
       this.valsAsArr.push(Object.values(this.vals)[ct++]);
       this.keysAsArr.push(key);
-
-      // and make the oft pattern-validated value formControl
-      if (key == 'first_name' || key == 'middle_name' || key == 'last_name') {
-        this.grp[key+'_value'] = new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z']+$")]);
-      } else if (key == 'email') {
-        this.grp[key+'_value'] = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]);
-      } else if (key == 'phone') {
-        this.grp[key+'_value'] = new FormControl('', [Validators.required, Validators.maxLength(14), Validators.minLength(14)]);
-      }
-
-
     })
 
+    let ourNgModel = new NgModel();
+    ourNgModel.control = new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z']+$")]);
+    this.inputNgModels.push(ourNgModel);
+    this.inputNgNames.push('first_name_value');
     //console.log(this.valsAsArr);
     //console.log(Object.values(this.vals));
   }
@@ -115,6 +110,22 @@ export class DataFormComponent implements OnInit {
   }
 
   onSelectionChanged(event: MatAutocompleteSelectedEvent, index: number) {
+    Object.keys(this.vals).forEach(key => {
+      if (event.option.value == this.vals[key]) {
+        this.myFormControlName = this.dynamicInputName = key+'_value';
+
+        // and make the oft pattern-validated value formControl
+        if (key == 'first_name' || key == 'middle_name' || key == 'last_name') {
+          //this.grp[key+'_value'] = new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z']+$")]);
+          //console.log(this.grp[key+'_value']);
+        } else if (key == 'email') {
+          this.grp[key+'_value'] = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]);
+        } else if (key == 'phone') {
+          this.grp[key+'_value'] = new FormControl('', [Validators.required, Validators.maxLength(14), Validators.minLength(14)]);
+        }
+      }
+    });
+
     this.exposeFieldValueInput(event.option.value, index);
     //console.log(this.optionSelection);
 
@@ -178,11 +189,6 @@ export class DataFormComponent implements OnInit {
     return txt;
   }
 
-  @HostListener("ngModelChange", ["$event"]) onNgModelChange(newValue) {
-    //console.log('got it');
-    this.elementRef.nativeElement.value = this.maskUSPhone(newValue);
-  }
-
   openDialog(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
@@ -199,7 +205,7 @@ export class DataFormComponent implements OnInit {
     this.spinnerShown = true;
     setTimeout(() => {
       this.spinnerShown = false;
-    }, 5000);
+    }, 2000);
   }
 
   openSnackBar() {
@@ -208,5 +214,5 @@ export class DataFormComponent implements OnInit {
     });
   }
 
-  doNothing() {}
+  denada() {}
 }
