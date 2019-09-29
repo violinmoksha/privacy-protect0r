@@ -110,7 +110,7 @@
           <tr *ngFor="let key of keysAsArr; let index = index" [hidden]="index > 0 && !hiddenRows[index]">
             <td style="width:100px">
               <mat-form-field style="width:300px">
-                <input type="text" placeholder="Start Typing the Field Name" matInput [formControl]="fieldLabel" name="fieldLabel"
+                <input type="text" placeholder="Start Typing the Field Name" matInput [formControl]="fieldLabel" name="fieldLabel" (change)="onRandomValueChg($event, index)" matTooltip="Dictionary Feature coming soon."
                   [matAutocomplete]="auto">
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChanged($event, index)">
                   <mat-option *ngFor="let val of filteredValues" [value]="val">
@@ -150,7 +150,4 @@
 
 <mat-progress-spinner *ngIf="spinnerShown" style="margin:-225px auto;" mode="indeterminate"></mat-progress-spinner>
 
-<!--TODO: random field gets highlight on blur to suggestToDictionary-->
-
-<!-- in menu-form: src system/SAN column, (2) w src col, multis r collate with link to ux for multis -->
 <!-- also in menu-form: redundancy elim and/or label/val typography -->

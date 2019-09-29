@@ -67,6 +67,8 @@ export class DataFormComponent implements OnInit {
   public namePat: string = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
   public selectedPattern: string;
 
+  public selectionsChgd: boolean[] = [false];
+
   @ViewChild('formDir', { static: false }) formDir: FormGroupDirective;
   @ViewChildren('controlDir', { read: ElementRef }) controlDirs: QueryList<ElementRef>;
 
@@ -119,7 +121,7 @@ export class DataFormComponent implements OnInit {
 
   ngAfterViewInit(){
     // print array of ElementRef objects
-    console.log(this.controlDirs.toArray());
+    //console.log(this.controlDirs.toArray());
   }
 
   exposeFieldValueInput(option: string, ix: number) {
@@ -159,7 +161,15 @@ export class DataFormComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
+  onRandomValueChg(event, index) {
+    if (!this.selectionsChgd[index]) {
+      event.target.style = "background: yellow !important; cursor: pointer !important";
+    }
+  }
+
   onSelectionChanged(event: MatAutocompleteSelectedEvent, index: number) {
+    this.selectionsChgd[index] = true;
+
     this.exposeFieldValueInput(event.option.value, index);
     //console.log(this.optionSelection);
 

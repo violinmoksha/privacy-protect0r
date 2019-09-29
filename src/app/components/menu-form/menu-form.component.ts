@@ -24,6 +24,7 @@ export class MenuFormComponent implements OnInit {
   public hrExpanded: boolean = true;
   public healthExpanded: boolean = true;
   public finTechExpanded: boolean = true;
+  public showSrcSystem: boolean = false;
 
   @ViewChild('first_nameL', { read: true, static: true}) first_nameL: ElementRef;
 
@@ -140,6 +141,10 @@ export class MenuFormComponent implements OnInit {
       this.hrExpanded = true;
     }
   }*/
+
+  showSrcSystems() {
+    this.showSrcSystem = true;
+  }
 
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.model); }

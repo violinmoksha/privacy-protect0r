@@ -28,12 +28,15 @@
   <form (ngSubmit)="onSubmit()" #menuForm="ngForm" style="margin-top:20px !important;">
     <table datatable data-order='' class="hover" data-sortable="false">
       <thead style="font-size:18px;">
-        <tr><th>&nbsp;</th>
-        <th>Category   </th>
-        <th>Label</th>
-        <th>Value</th>
-        <th>Show Label</th>
-        <th>Show Value</th></tr>
+        <tr>
+          <th>&nbsp;</th>
+          <th style="width:150px">Category</th>
+          <th>Label</th>
+          <th>Value</th>
+          <th>Show Label</th>
+          <th>Show Value</th>
+          <th>Source(s)</th>
+        </tr>
       </thead>
       <tbody>
           <tr>
@@ -43,6 +46,7 @@
             <td>Paul</td>
             <td><input type="checkbox" id="first_nameL" #first_nameL [checked]="hrshowhide.checked" name="first_nameL" (change)="model.first_nameL == 'true' ? model.first_nameL = 'false' : model.first_nameL = 'true'"></td>
             <td><input type="checkbox" id="first_nameV" [checked]="first_nameL.checked && hrshowhide.checked" name="first_nameV" (change)="model.first_nameV == 'true' ? model.first_nameV = 'false' : model.first_nameV = 'true'"></td>
+            <td><span *ngIf="!showSrcSystem" (click)="showSrcSystems()" style="cursor:pointer !important; color: blue !important" class="glyphicon glyphicon-info-sign">&nbsp;(3)</span><span *ngIf="showSrcSystem">System12, System17, SystemABCDEFG</span></td>
           </tr>
       </tbody>
       <tbody *ngIf="hrExpanded">
@@ -53,6 +57,7 @@
           <td>Edwin</td>
           <td><input type="checkbox" id="middle_nameL" #middle_nameL [checked]="hrshowhide.checked" name="middle_nameL" (change)="model.middle_nameL == 'true' ? model.middle_nameL = 'false' : model.middle_nameL = 'true'"></td>
           <td><input type="checkbox" id="middle_nameV" [checked]="middle_nameL.checked && hrshowhide.checked" name="middle_nameV" (change)="model.middle_nameV == 'true' ? model.middle_nameV = 'false' : model.middle_nameV = 'true'"></td>
+          <td>System12, System19, SystemABCDEFG</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -61,6 +66,7 @@
           <td>Yeager</td>
           <td><input type="checkbox" id="last_nameL" #last_nameL [checked]="hrshowhide.checked" name="last_nameL" (change)="model.last_nameL == 'true' ? model.last_nameL = 'false' : model.last_nameL = 'true'"></td>
           <td><input type="checkbox" id="last_nameV" [checked]="last_nameL.checked && hrshowhide.checked" name="last_nameV" (change)="model.last_nameV == 'true' ? model.last_nameV = 'false' : model.last_nameV = 'true'"></td>
+          <td>System12, System19</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -69,6 +75,7 @@
           <td>pyeager@firstrepublic.com</td>
           <td><input type="checkbox" id="emailL" #emailL [checked]="hrshowhide.checked" name="emailL" (change)="model.emailL == 'true' ? model.emailL = 'false' : model.emailL = 'true'"></td>
           <td><input type="checkbox" id="emailV" [checked]="emailL.checked && hrshowhide.checked" name="emailV" (change)="model.emailV == 'true' ? model.emailV = 'false' : model.emailV = 'true'"></td>
+          <td>System12</td>
         </tr>
       </tbody>
       <!--<tr>
@@ -159,6 +166,7 @@
           <td>Active Worker</td>
           <td><input type="checkbox" id="dxL" #dxL [checked]="healthshowhide.checked" name="dxL" (change)="model.dxL == 'true' ? model.dxL = 'false' : model.dxL = 'true'"></td>
           <td><input type="checkbox" id="dxV" [checked]="dxL.checked && healthshowhide.checked" name="dxV" (change)="model.dxV == 'true' ? model.dxV = 'false' : model.dxV = 'true'"></td>
+          <td>System12, System19</td>
         </tr>
       <tbody>
       <tbody *ngIf="healthExpanded">
@@ -169,6 +177,7 @@
           <td>CoQ10AndLecithin</td>
           <td><input type="checkbox" id="rxL" #rxL [checked]="healthshowhide.checked" name="rxL" (change)="model.rxL == 'true' ? model.rxL = 'false' : model.rxL = 'true'"></td>
           <td><input type="checkbox" id="rxV" [checked]="rxL.checked && healthshowhide.checked" name="rxV" (change)="model.rxV == 'true' ? model.rxV = 'false' : model.rxV = 'true'"></td>
+          <td>System18</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -177,6 +186,7 @@
           <td>O-Positive</td>
           <td><input type="checkbox" id="bloodGrpL" #bloodGrpL [checked]="healthshowhide.checked" name="bloodGrpL" (change)="model.bloodGrpL == 'true' ? model.bloodGrpL = 'false' : model.bloodGrpL = 'true'"></td>
           <td><input type="checkbox" id="bloodGrpV" [checked]="bloodGrpL.checked && healthshowhide.checked" name="bloodGrpV" (change)="model.bloodGrpV == 'true' ? model.bloodGrpV = 'false' : model.bloodGrpV = 'true'"></td>
+          <td>System3</td>
         </tr>
       </tbody>
       <tbody>
@@ -187,6 +197,7 @@
           <td>1234566</td>
           <td><input type="checkbox" id="nonPciAcctL" #nonPciAcctL [checked]="fintechshowhide.checked" name="nonPciAcctL" (change)="model.nonPciAcctL == 'true' ? model.nonPciAcctL = 'false' : model.nonPciAcctL = 'true'"></td>
           <td><input type="checkbox" id="nonPciAcctV" [checked]="nonPciAcctL.checked && fintechshowhide.checked" name="nonPciAcctV" (change)="model.nonPciAcctV == 'true' ? model.nonPciAcctV = 'false' : model.nonPciAcctV = 'true'"></td>
+          <td>System1</td>
         </tr>
       </tbody>
       <tbody *ngIf="finTechExpanded">
