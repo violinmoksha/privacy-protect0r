@@ -1,8 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { NgModel, FormControl, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
-import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Component, OnInit, ChangeDetectorRef, ApplicationRef, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, FormControlName, Validators, FormBuilder, ValidatorFn, AbstractControl } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { PIValues } from '../../models/pivalues';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,7 +16,7 @@ export class DataFormComponent implements OnInit {
   public grp: FormGroup;
   public vals: PIValues;
   public valsAsArr: any;
-  public keysAsArr: any;
+  public keysAsArr: any = ["first_name", "middle_name", "last_name", "email", "phone", "zipcode", "codeOTheDay", "socialMediaURL", "socialSecurityNumber", "driversLicense", "passportNumber", "passportNation", "age", "otherNamesUsedInThePast", "dx", "rx", "bloodGrp", "governmentFoodSubsistenceV", "nonPciAcctV", "nonPciSecDigitzV"];
   public optionSelection: any = [''];
   public optionsAsCats: any = {
     'HR/PII': ["First Name", "Middle Name", "Last Name", "EMail", "Phone", "Zipcode", "Code of the Day", "Social Media Profile URL", "Social Security Number", "Driver's License", "Passport Number", "Passport Nation", "Age", "Other Names Used in the Past"],
@@ -57,36 +56,70 @@ export class DataFormComponent implements OnInit {
   public alertHide = false;
   public phoneMaskEnable: boolean = false;
   public ssnMaskEnable: boolean = false;
-  public dynamicInputName: string = '';
-  public myFormControlName: string = '';
-  public inputNgModels: any = [];
-  public inputNgNames: any = [];
 
-  constructor(private router: Router, private cdr: ChangeDetectorRef, private elementRef:ElementRef, public dialog: MatDialog, private snackBar: MatSnackBar) {
+  public emailCreated: boolean = false;
+  public myFormControlName: string = '';
+
+  public fieldLabel: FormControl;
+  public dynamicType: string = "text";
+  public fieldValFormControlName: string[] = ["first_name"];
+
+  public namePat: string = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
+  public selectedPattern: string;
+
+  @ViewChild('formDir', { static: false }) formDir: FormGroupDirective;
+  @ViewChildren('controlDir', { read: ElementRef }) controlDirs: QueryList<ElementRef>;
+
+  constructor(private cdr: ChangeDetectorRef, public dialog: MatDialog, private snackBar: MatSnackBar, private fb: FormBuilder, public appRef: ApplicationRef) {
     this.vals = new PIValues();
-    this.grp = new FormGroup({});
     this.valsAsArr = [];
-    this.keysAsArr = [];
 
     let ct = 0;
     Object.keys(this.vals).forEach(key => {
-      this.grp[key] = new FormControl('', [Validators.required]);
-      this.grp[key].valueChanges.subscribe(newValue => {
-        this.filteredValues = this.filterValues(newValue);
-      });
       this.valsAsArr.push(Object.values(this.vals)[ct++]);
-      this.keysAsArr.push(key);
     })
 
-    let ourNgModel = new NgModel();
-    ourNgModel.control = new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z']+$")]);
-    this.inputNgModels.push(ourNgModel);
-    this.inputNgNames.push('first_name_value');
-    //console.log(this.valsAsArr);
+    console.log(this.keysAsArr);
     //console.log(Object.values(this.vals));
   }
 
   ngOnInit() {
+    this.grp = this.fb.group({
+      first_name: ['', Validators.compose([Validators.required, Validators.pattern(this.namePat)])],
+      middle_name: ['', Validators.compose([Validators.required, Validators.pattern(this.namePat)])],
+      last_name: ['', Validators.compose([Validators.required, Validators.pattern(this.namePat)])],
+      email: ['', Validators.compose([Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
+      phone: ['', Validators.compose([Validators.required, Validators.minLength(14), Validators.maxLength(14)])],
+      zipcode: ['', Validators.compose([Validators.required, Validators.pattern("^[0-9]{5}$")])],
+      codeOTheDay: ['', Validators.compose([Validators.required, Validators.pattern("^[0-9]{4}$")])],
+      socialMediaURL: ['', Validators.compose([Validators.required])],
+      socialSecurityNumber: ['', Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
+      driversLicense: ['', Validators.compose([Validators.required, Validators.pattern("^[A-Za-z0-9]+$")])],
+      passportNumber: ['', Validators.compose([Validators.required, Validators.pattern("^[A-Za-z0-9]+$")])],
+      passportNation: ['', Validators.compose([Validators.required, Validators.pattern("^[A-Za-z'-]+$")])], // f.e. Cote d'Ivoire
+      age: ['', Validators.compose([Validators.required, Validators.pattern("^[0-9]+$")])],
+      otherNamesUsedInThePast: ['', Validators.compose([Validators.required])],
+      dx: ['', Validators.compose([Validators.required])],
+      rx: ['', Validators.compose([Validators.required])],
+      bloodGrp: ['', Validators.compose([Validators.required])],
+      governmentFoodSubsistenceV: ['', Validators.compose([Validators.required])],
+      nonPciAcctV: ['', Validators.compose([Validators.required])],
+      nonPciSecDigitzV: ['', Validators.compose([Validators.required, Validators.pattern("^[0-9]{3}$")])],
+    });
+
+    this.fieldLabel = new FormControl('', Validators.compose([Validators.required]));
+    this.fieldLabel.valueChanges.subscribe(newValue => {
+      this.filteredValues = this.filterValues(newValue);
+    });
+
+    this.grp.controls.email.valueChanges.subscribe(val => {
+      this.grp.controls.email.updateValueAndValidity();
+    })
+  }
+
+  ngAfterViewInit(){
+    // print array of ElementRef objects
+    console.log(this.controlDirs.toArray());
   }
 
   exposeFieldValueInput(option: string, ix: number) {
@@ -99,6 +132,20 @@ export class DataFormComponent implements OnInit {
     });
     //this.optionSelection[ix] = option;
 
+    //this.controlDirPhone.nativeElement.formControlName = 'phone';
+    Object.keys(this.vals).forEach(key => {
+      if (option == this.vals[key]) {
+        //console.log('this.controlDir: '+JSON.stringify(this.controlDirs.toArray()[ix]));
+        this.controlDirs.toArray()[ix].nativeElement.formControlName = this.fieldValFormControlName[ix] = key;
+        //this.grp[key].formControlName = this.fieldValFormControlName = key;
+        if (key == 'email') {
+          //this.controlDir.nativeElement.type = 'email';
+        }
+      }
+    })
+
+    //this.grp.updateValueAndValidity({onlySelf: false});
+
     if (this.optionsAsCats['HR/PII'].indexOf(option) !== -1) {
       this.catSelection[ix] = 'Data Category: HR/PII';
     } else if (this.optionsAsCats['Health/PHI'].indexOf(option) !== -1) {
@@ -106,26 +153,13 @@ export class DataFormComponent implements OnInit {
     } else if (this.optionsAsCats['FinTech/PCI'].indexOf(option) !== -1) {
       this.catSelection[ix] = 'Data Category: FinTech/PCI';
     }
+
+    this.appRef.tick();
+
     this.cdr.detectChanges();
   }
 
   onSelectionChanged(event: MatAutocompleteSelectedEvent, index: number) {
-    Object.keys(this.vals).forEach(key => {
-      if (event.option.value == this.vals[key]) {
-        this.myFormControlName = this.dynamicInputName = key+'_value';
-
-        // and make the oft pattern-validated value formControl
-        if (key == 'first_name' || key == 'middle_name' || key == 'last_name') {
-          //this.grp[key+'_value'] = new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z']+$")]);
-          //console.log(this.grp[key+'_value']);
-        } else if (key == 'email') {
-          this.grp[key+'_value'] = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]);
-        } else if (key == 'phone') {
-          this.grp[key+'_value'] = new FormControl('', [Validators.required, Validators.maxLength(14), Validators.minLength(14)]);
-        }
-      }
-    });
-
     this.exposeFieldValueInput(event.option.value, index);
     //console.log(this.optionSelection);
 

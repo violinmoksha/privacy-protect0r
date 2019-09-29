@@ -104,13 +104,13 @@
 
   <fieldset style="border-top:1px dashed black;border:1px dashed black;border-bottom:none;padding:5px;">
     <legend style="border:none">&#9660; Data Collection</legend>
-    <form [formGroup]="grp" id="dataForm" name="dataForm" #dataForm novalidate>
+    <form [formGroup]="grp" #formDir="ngForm" id="dataForm" name="dataForm" #dataForm novalidate>
       <table datatable data-order='' class="hover" data-sortable="false" style="border-collapse:collapse">
         <tbody>
           <tr *ngFor="let key of keysAsArr; let index = index" [hidden]="index > 0 && !hiddenRows[index]">
             <td style="width:100px">
               <mat-form-field style="width:300px">
-                <input type="text" placeholder="Start Typing the Field Name" matInput [formControl]="grp[key]"
+                <input type="text" placeholder="Start Typing the Field Name" matInput [formControl]="fieldLabel" name="fieldLabel"
                   [matAutocomplete]="auto">
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChanged($event, index)">
                   <mat-option *ngFor="let val of filteredValues" [value]="val">
@@ -121,15 +121,16 @@
             </td>
             <td>
               <mat-form-field>
-                <input type="text"
+                <input [type]="dynamicType"
                   matInput
                   class="field-value"
                   placeholder="Field Value"
                   [value]="optionSelection[index] || '' || maskedPhone"
-                  [(ngModel)]="inputNgModels[index]" [name]="inputNgNames[index]"
                   (click)="$event.target.value = ''; $event.target.placeholder = ''"
                   (input)="phoneMaskEnable ? $event.target.value = maskUSPhone($event.target.value) : denada();
-                    ssnMaskEnable ? $event.target.value = maskSSN($event.target.value) : denada()">
+                    ssnMaskEnable ? $event.target.value = maskSSN($event.target.value) : denada()"
+                  #controlDir
+                  [formControlName]="fieldValFormControlName[index]" [name]="fieldValFormControlName[index]">
               </mat-form-field>
             </td>
             <td>{{catSelection[index] || 'Category Name'}}</td>
@@ -138,7 +139,7 @@
         </tbody>
       </table>
       <div style="margin-top:20px;">
-        <button type="submit" class="btn btn-success" style="float:left;margin-right:5px;" [disabled]="dataForm.invalid" (click)="onSubmit(dataForm)">Submit</button>
+        <button type="submit" class="btn btn-success" style="float:left;margin-right:5px;" [disabled]="grp.invalid" (click)="onSubmit(dataForm)">Submit</button>
         <button type="submit" class="btn btn-primary" style="float:left;margin-right:5px;" (click)="spinnerShownFakeOut()">Save Draft</button>
         <button type="cancel" class="btn btn-danger" style="float:right" (click)="openDialog()">Reset</button>
       </div>
