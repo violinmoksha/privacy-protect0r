@@ -110,14 +110,17 @@
           <tr *ngFor="let key of keysAsArr; let index = index" [hidden]="index > 0 && !hiddenRows[index]">
             <td style="width:100px">
               <mat-form-field style="width:300px">
-                <input type="text" placeholder="Start Typing the Field Name" matInput [formControl]="fieldLabel" name="fieldLabel" (change)="onRandomValueChg($event, index)" matTooltip="Dictionary Feature coming soon."
-                  [matAutocomplete]="auto" [style]="selectionsChgd[index] ? 'background: none! important;' : 'background: yellow !important'">
+                <input type="text" placeholder="Start Typing the Field Name" matInput [formControl]="fieldLabel" name="fieldLabel" (change)="onRandomValueChg($event, index)"
+                  [matAutocomplete]="auto" [style]="selectionsChgd[index] ? 'background: none! important;' : 'background: yellow !important;'">
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChanged($event, index)">
                   <mat-option *ngFor="let val of filteredValues" [value]="val">
                     {{val}}
                   </mat-option>
                 </mat-autocomplete>
               </mat-form-field>
+            </td>
+            <td style="width:20px;">
+              <button *ngIf="!selectionsChgd[index]" class="glyphicon glyphicon-plus" matTooltip="Click or tap here to add to dictionary"></button>
             </td>
             <td>
               <mat-form-field>
