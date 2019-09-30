@@ -4,6 +4,8 @@ export class PIMenu {
   public middle_nameV: string;
   public last_nameV: string;
   public emailV: string;
+  public mailing1V: string;
+  public mailing2V: string;
   public phoneV: string;
   public zipcodeV: string;
   public codeOTheDayV: string;
@@ -33,6 +35,8 @@ export class PIMenu {
   public middle_nameL: string;
   public last_nameL: string;
   public emailL: string;
+  public mailing1L: string;
+  public mailing2L: string;
   public phoneL: string;
   public zipcodeL: string;
   public codeOTheDayL: string;
@@ -65,6 +69,8 @@ export class PIMenu {
     this.middle_nameV = "true";
     this.last_nameV = "true";
     this.emailV = "true";
+    this.mailing1V = "true";
+    this.mailing2V = "true";
     this.phoneV = "true";
     this.zipcodeV = "true";
     this.codeOTheDayV = "true";
@@ -94,6 +100,8 @@ export class PIMenu {
     this.middle_nameL = "true";
     this.last_nameL = "true";
     this.emailL = "true";
+    this.mailing1L = "true";
+    this.mailing2L = "true";
     this.phoneL = "true";
     this.zipcodeL = "true";
     this.codeOTheDayL = "true";

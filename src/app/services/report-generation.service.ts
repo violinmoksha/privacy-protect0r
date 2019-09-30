@@ -13,7 +13,7 @@ export class ReportGenerationService {
     return this.http.get<GUID>('http://localhost:3000/api/v1/make_guid');
   }
 
-  getReport(first_nameV: string, first_nameL: string, middle_nameV: string, middle_nameL: string, last_nameV: string, last_nameL: string, emailV: string, emailL: string, phoneV: string, phoneL: string, zipcodeV: string, zipcodeL: string, codeOTheDayV: string, codeOTheDayL: string, socialMediaURLV: string, socialMediaURLL: string, socialSecurityNumberV: string, socialSecurityNumberL: string, driversLicenseV: string, driversLicenseL: string, passportNumberV: string, passportNumberL: string, passportNationV: string, passportNationL: string, ageV: string, ageL: string, otherNamesUsedInThePastV: string, otherNamesUsedInThePastL: string, dxV: string, dxL: string, rxV: string, rxL: string, bloodGrpV: string, bloodGrpL: string, inTheKnowV: string, inTheKnowL: string, compliantPatientV: string, compliantPatientL: string, governmentFoodSubsistenceV: string, governmentFoodSubsistenceL: string, nonPciAcctV: string, nonPciAcctL: string, nonPciSecDigitzV: string, nonPciSecDigitzL: string)
+  getReport(first_nameV: string, first_nameL: string, middle_nameV: string, middle_nameL: string, last_nameV: string, last_nameL: string, emailV: string, emailL: string, mailing1V: string, mailing1L: string, mailing2V: string, mailing2L: string, phoneV: string, phoneL: string, zipcodeV: string, zipcodeL: string, codeOTheDayV: string, codeOTheDayL: string, socialMediaURLV: string, socialMediaURLL: string, socialSecurityNumberV: string, socialSecurityNumberL: string, driversLicenseV: string, driversLicenseL: string, passportNumberV: string, passportNumberL: string, passportNationV: string, passportNationL: string, ageV: string, ageL: string, otherNamesUsedInThePastV: string, otherNamesUsedInThePastL: string, dxV: string, dxL: string, rxV: string, rxL: string, bloodGrpV: string, bloodGrpL: string, inTheKnowV: string, inTheKnowL: string, compliantPatientV: string, compliantPatientL: string, governmentFoodSubsistenceV: string, governmentFoodSubsistenceL: string, nonPciAcctV: string, nonPciAcctL: string, nonPciSecDigitzV: string, nonPciSecDigitzL: string)
     {
     const params = new HttpParams({
       fromObject: {
@@ -25,6 +25,10 @@ export class ReportGenerationService {
         last_nameL:last_nameL,
         emailV:emailV,
         emailL:emailL,
+        mailing1V:mailing1V,
+        mailing1L:mailing1L,
+        mailing2V:mailing2V,
+        mailing2L:mailing2L,
         phoneV:phoneV,
         phoneL:phoneL,
         zipcodeV:zipcodeV,

@@ -81,7 +81,7 @@ export class DataFormComponent implements OnInit {
       this.valsAsArr.push(Object.values(this.vals)[ct++]);
     })
 
-    console.log(this.keysAsArr);
+    //console.log(this.keysAsArr);
     //console.log(Object.values(this.vals));
   }
 
@@ -190,7 +190,7 @@ export class DataFormComponent implements OnInit {
   }
 
   hideRow(ix) {
-    console.log(ix);
+    //console.log(ix);
     this.hiddenRows[ix] = false;
   }
 
@@ -199,7 +199,7 @@ export class DataFormComponent implements OnInit {
   }
 
   onSubmit(dataForm) {
-    console.log(dataForm);
+    //console.log(dataForm);
     //this.router.navigateByUrl('/menu-form');
   }
 

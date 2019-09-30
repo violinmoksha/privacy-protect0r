@@ -24,7 +24,6 @@ export class MenuFormComponent implements OnInit {
   public hrExpanded: boolean = true;
   public healthExpanded: boolean = true;
   public finTechExpanded: boolean = true;
-  public showSrcSystem: boolean = false;
 
   @ViewChild('first_nameL', { read: true, static: true}) first_nameL: ElementRef;
 
@@ -49,7 +48,7 @@ export class MenuFormComponent implements OnInit {
 
     // for make_report
 
-    this._reportGenerationService.getReport(this.model.first_nameV, this.model.first_nameL, this.model.middle_nameV, this.model.middle_nameL, this.model.last_nameV, this.model.last_nameL, this.model.emailV, this.model.emailL, this.model.phoneV, this.model.phoneL, this.model.zipcodeV, this.model.zipcodeL, this.model.codeOTheDayV, this.model.codeOTheDayL, this.model.socialMediaURLV, this.model.socialMediaURLL, this.model.socialSecurityNumberV, this.model.socialSecurityNumberL, this.model.driversLicenseV, this.model.driversLicenseL, this.model.passportNumberV, this.model.passportNumberL, this.model.passportNationV, this.model.passportNationL, this.model.ageV, this.model.ageL, this.model.otherNamesUsedInThePastV, this.model.otherNamesUsedInThePastL, this.model.dxV, this.model.dxL, this.model.rxV, this.model.rxL, this.model.bloodGrpV, this.model.bloodGrpL, this.model.inTheKnowV, this.model.inTheKnowL, this.model.compliantPatientV, this.model.compliantPatientL, this.model.governmentFoodSubsistenceV, this.model.governmentFoodSubsistenceL, this.model.nonPciAcctV, this.model.nonPciAcctL, this.model.nonPciSecDigitzV, this.model.nonPciSecDigitzL)
+    this._reportGenerationService.getReport(this.model.first_nameV, this.model.first_nameL, this.model.middle_nameV, this.model.middle_nameL, this.model.last_nameV, this.model.last_nameL, this.model.emailV, this.model.emailL, this.model.mailing1V, this.model.mailing1L, this.model.mailing2V, this.model.mailing2L, this.model.phoneV, this.model.phoneL, this.model.zipcodeV, this.model.zipcodeL, this.model.codeOTheDayV, this.model.codeOTheDayL, this.model.socialMediaURLV, this.model.socialMediaURLL, this.model.socialSecurityNumberV, this.model.socialSecurityNumberL, this.model.driversLicenseV, this.model.driversLicenseL, this.model.passportNumberV, this.model.passportNumberL, this.model.passportNationV, this.model.passportNationL, this.model.ageV, this.model.ageL, this.model.otherNamesUsedInThePastV, this.model.otherNamesUsedInThePastL, this.model.dxV, this.model.dxL, this.model.rxV, this.model.rxL, this.model.bloodGrpV, this.model.bloodGrpL, this.model.inTheKnowV, this.model.inTheKnowL, this.model.compliantPatientV, this.model.compliantPatientL, this.model.governmentFoodSubsistenceV, this.model.governmentFoodSubsistenceL, this.model.nonPciAcctV, this.model.nonPciAcctL, this.model.nonPciSecDigitzV, this.model.nonPciSecDigitzL)
       .subscribe(data => {
         let xlsx = new Blob([data], { type: "application/xlsx" });
         let filename = "privacy-report.xlsx";
@@ -75,6 +74,10 @@ export class MenuFormComponent implements OnInit {
     this.model.last_nameL = val.toString();
     this.model.emailV = val.toString();
     this.model.emailL = val.toString();
+    this.model.mailing1V = val.toString();
+    this.model.mailing1L = val.toString();
+    this.model.mailing2V = val.toString();
+    this.model.mailing2L = val.toString();
     this.model.phoneV = val.toString()
     this.model.phoneL = val.toString();
     this.model.zipcodeV = val.toString();
@@ -141,10 +144,6 @@ export class MenuFormComponent implements OnInit {
       this.hrExpanded = true;
     }
   }*/
-
-  showSrcSystems() {
-    this.showSrcSystem = true;
-  }
 
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.model); }
