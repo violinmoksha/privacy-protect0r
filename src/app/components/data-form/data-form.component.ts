@@ -195,7 +195,24 @@ export class DataFormComponent implements OnInit {
   }
 
   filterValues(search: string) {
-    return this.valsAsArr.filter(value => value.toLowerCase().indexOf(search.toLowerCase()) >= 0);
+    return this.valsAsArr.filter(value => {
+      let exactMatchSearchArr = search.split(' ');
+      let anyMatch: boolean = false;
+      exactMatchSearchArr.forEach(searchVal => {
+        if (searchVal.length > 0) {
+          if (value.toLowerCase().indexOf(searchVal.toLowerCase()) >= 0) {
+            anyMatch = true;
+          }
+        }
+      });
+
+      // non exact-match, some BigG taxonomy for this at the moment
+      if (value.toLowerCase().indexOf(search.toLowerCase()) >= 0) {
+        anyMatch = true;
+      }
+
+      return anyMatch;
+    });
   }
 
   onSubmit(dataForm) {
