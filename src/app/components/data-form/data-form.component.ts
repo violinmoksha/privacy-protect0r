@@ -139,6 +139,7 @@ export class DataFormComponent implements OnInit {
       if (option == this.vals[key]) {
         //console.log('this.controlDir: '+JSON.stringify(this.controlDirs.toArray()[ix]));
         this.controlDirs.toArray()[ix].nativeElement.formControlName = this.fieldValFormControlName[ix] = key;
+        this.controlDirs.toArray()[ix].nativeElement.style = 'background: none !important';
         //this.grp[key].formControlName = this.fieldValFormControlName = key;
         if (key == 'email') {
           //this.controlDir.nativeElement.type = 'email';
@@ -162,9 +163,7 @@ export class DataFormComponent implements OnInit {
   }
 
   onRandomValueChg(event, index) {
-    if (!this.selectionsChgd[index]) {
-      event.target.style = "background: yellow !important; cursor: pointer !important";
-    }
+    event.target.style = "background: yellow !important; cursor: pointer !important";
   }
 
   onSelectionChanged(event: MatAutocompleteSelectedEvent, index: number) {

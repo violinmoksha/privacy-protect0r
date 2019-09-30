@@ -111,7 +111,7 @@
             <td style="width:100px">
               <mat-form-field style="width:300px">
                 <input type="text" placeholder="Start Typing the Field Name" matInput [formControl]="fieldLabel" name="fieldLabel" (change)="onRandomValueChg($event, index)" matTooltip="Dictionary Feature coming soon."
-                  [matAutocomplete]="auto">
+                  [matAutocomplete]="auto" [style]="selectionsChgd[index] ? 'background: none! important;' : 'background: yellow !important'">
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChanged($event, index)">
                   <mat-option *ngFor="let val of filteredValues" [value]="val">
                     {{val}}
