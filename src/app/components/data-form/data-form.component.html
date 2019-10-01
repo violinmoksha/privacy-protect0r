@@ -4,7 +4,7 @@
       <li class="breadcrumb-item">Intake <span class="glyphicon glyphicon-file"></span></li>
       <li class="breadcrumb-item">Verification <span class="glyphicon glyphicon-check"></span></li>
       <li class="breadcrumb-item active"><a href="#" style="text-decoration:underline !important">Data Collection <span class="glyphicon glyphicon-list-alt"></span></a></li>
-      <li class="breadcrumb-item"><a href="menu-form">Report Generation <span class="glyphicon glyphicon-download-alt"></span></a></li>
+      <li class="breadcrumb-item"><a href="/menu-form">Report Generation <span class="glyphicon glyphicon-download-alt"></span></a></li>
       <li class="breadcrumb-item">Final Review <span class="glyphicon glyphicon-user"></span></li>
       <li class="breadcrumb-item">Delivery <span class="glyphicon glyphicon-circle-arrow-right"></span></li>
     </ol>
@@ -63,13 +63,6 @@
         <div class="col-xs-3">Time</div>
       </div>
       <div class="row">
-        <div class="col-xs-2">Paul</div>
-        <div class="col-xs-2">Developer <!--<span class="label label-warning">D</span>--></div>
-        <div class="col-xs-2">Add Note</div>
-        <div class="col-xs-3">Approving this following ( ...<span class="glyphicon glyphicon-info-sign" matTooltip="..., the code review of which I did on Thursday evening and found a buffer overrun bug at line 2983 of menu-form.ts thus am following up tomorrow." aria-label="Button that displays a tooltip with the additional comments when hovered or clicked"></span> )</div>
-        <div class="col-xs-3">9/25/2019 07:25:10 AM PDT</div>
-      </div>
-      <div class="row">
         <div class="col-xs-2">Jeanne</div>
         <div class="col-xs-2">Legal <span class="label">L</span></div>
         <div class="col-xs-2">Approval</div>
@@ -111,7 +104,7 @@
             <td style="width:100px">
               <mat-form-field style="width:300px">
                 <input type="text" placeholder="Start Typing the Field Name" matInput [formControl]="fieldLabel" name="fieldLabel" (change)="onRandomValueChg($event, index)"
-                  [matAutocomplete]="auto" [style]="selectionsChgd[index] ? 'background: none! important;' : 'background: yellow !important;'">
+                  [matAutocomplete]="auto" [style]="selectionsChgd[index] ? 'background: none! important;' : 'background: yellow !important'">
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChanged($event, index)">
                   <mat-option *ngFor="let val of filteredValues" [value]="val">
                     {{val}}
@@ -119,8 +112,8 @@
                 </mat-autocomplete>
               </mat-form-field>
             </td>
-            <td style="width:20px;">
-              <button *ngIf="!selectionsChgd[index]" class="glyphicon glyphicon-plus" matTooltip="Click or tap here to add to dictionary"></button>
+            <td *ngIf="!selectionsChgd[index]">
+              <button class="glyphicon glyphicon-plus" matTooltip="Click or tap here to add to dictionary"></button>
             </td>
             <td>
               <mat-form-field>
@@ -152,5 +145,3 @@
 </div>
 
 <mat-progress-spinner *ngIf="spinnerShown" style="margin:-225px auto;" mode="indeterminate"></mat-progress-spinner>
-
-<!-- also in menu-form: redundancy elim and/or label/val typography -->

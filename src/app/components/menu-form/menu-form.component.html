@@ -3,7 +3,7 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item">Intake <span class="glyphicon glyphicon-file"></span></li>
       <li class="breadcrumb-item">Verification <span class="glyphicon glyphicon-check"></span></li>
-      <li class="breadcrumb-item"><a href="data-form">Data Collection <span class="glyphicon glyphicon-list-alt"></span></a></li>
+      <li class="breadcrumb-item"><a href="/data-form/mailIDABCD1234GoesHere">Data Collection <span class="glyphicon glyphicon-list-alt"></span></a></li>
       <li class="breadcrumb-item active"><a href="#" style="text-decoration:underline !important">Report Generation <span class="glyphicon glyphicon-download-alt"></span></a></li>
       <li class="breadcrumb-item">Final Review <span class="glyphicon glyphicon-user"></span></li>
       <li class="breadcrumb-item">Delivery <span class="glyphicon glyphicon-circle-arrow-right"></span></li>
@@ -33,8 +33,6 @@
           <th style="width:150px">Category</th>
           <th>Label</th>
           <th>Value</th>
-          <th>Show Label</th>
-          <th>Show Value</th>
           <th>Source(s)</th>
         </tr>
       </thead>
@@ -42,10 +40,8 @@
           <tr>
             <td><input type="checkbox" checked (change)="hrShowHide(hrshowhide.checked)" #hrshowhide id="hrshowhide"></td>
             <td><a class="btn btn-link" (click)="hrShowHide(hrExpanded == true ? false: true)"><span *ngIf="hrExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!hrExpanded" class="glyphicon glyphicon-chevron-right"></span>HR/PII</a><a class="btn btn-link" (click)="joyrideActivate()"><span class="glyphicon glyphicon-info-sign"></span></a></td>
-            <td><label for="first_nameL">First Name</label></td>
-            <td>Paul</td>
-            <td><input type="checkbox" id="first_nameL" #first_nameL [checked]="hrshowhide.checked" name="first_nameL" (change)="model.first_nameL == 'true' ? model.first_nameL = 'false' : model.first_nameL = 'true'"></td>
-            <td><input type="checkbox" id="first_nameV" [checked]="first_nameL.checked && hrshowhide.checked" name="first_nameV" (change)="model.first_nameV == 'true' ? model.first_nameV = 'false' : model.first_nameV = 'true'"></td>
+            <td><input type="checkbox" matTooltip="Check to include field in report." id="first_nameL" #first_nameL [checked]="hrshowhide.checked" name="first_nameL" (change)="model.first_nameL == 'true' ? model.first_nameL = 'false' : model.first_nameL = 'true'">&nbsp;<label for="first_nameL">First Name</label></td>
+            <td><input type="checkbox" matTooltip="Check to include value in report." id="first_nameV" [checked]="first_nameL.checked && hrshowhide.checked" name="first_nameV" (change)="model.first_nameV == 'true' ? model.first_nameV = 'false' : model.first_nameV = 'true'"> Paul</td>
             <td matTooltip="Marketing, Eagle Intelligence, Digital Channels"><span class="glyphicon glyphicon-info-sign" style="color:blue !important"></span>&nbsp;(3)</td>
           </tr>
       </tbody>
@@ -53,47 +49,37 @@
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><label for="middle_nameL">Middle Name</label></td>
-          <td>Edwin</td>
-          <td><input type="checkbox" id="middle_nameL" #middle_nameL [checked]="hrshowhide.checked" name="middle_nameL" (change)="model.middle_nameL == 'true' ? model.middle_nameL = 'false' : model.middle_nameL = 'true'"></td>
-          <td><input type="checkbox" id="middle_nameV" [checked]="middle_nameL.checked && hrshowhide.checked" name="middle_nameV" (change)="model.middle_nameV == 'true' ? model.middle_nameV = 'false' : model.middle_nameV = 'true'"></td>
+          <td><input type="checkbox" matTooltip="Check to include field in report." id="middle_nameL" #middle_nameL [checked]="hrshowhide.checked" name="middle_nameL" (change)="model.middle_nameL == 'true' ? model.middle_nameL = 'false' : model.middle_nameL = 'true'">&nbsp;<label for="middle_nameL">Middle Name</label></td>
+          <td><input type="checkbox" id="middle_nameV" [checked]="middle_nameL.checked && hrshowhide.checked" name="middle_nameV" (change)="model.middle_nameV == 'true' ? model.middle_nameV = 'false' : model.middle_nameV = 'true'"> Edwin</td>
           <td matTooltip="Marketing, Eagle Intelligence, PWM, Digital Channels"><span class="glyphicon glyphicon-info-sign" style="color:blue !important"></span>&nbsp;(4)</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><label for="last_nameL">Last Name</label></td>
-          <td>Yeager</td>
-          <td><input type="checkbox" id="last_nameL" #last_nameL [checked]="hrshowhide.checked" name="last_nameL" (change)="model.last_nameL == 'true' ? model.last_nameL = 'false' : model.last_nameL = 'true'"></td>
-          <td><input type="checkbox" id="last_nameV" [checked]="last_nameL.checked && hrshowhide.checked" name="last_nameV" (change)="model.last_nameV == 'true' ? model.last_nameV = 'false' : model.last_nameV = 'true'"></td>
+          <td><input type="checkbox" id="last_nameL" #last_nameL [checked]="hrshowhide.checked" name="last_nameL" (change)="model.last_nameL == 'true' ? model.last_nameL = 'false' : model.last_nameL = 'true'">&nbsp;<label for="last_nameL">Last Name</label></td>
+          <td><input type="checkbox" id="last_nameV" [checked]="last_nameL.checked && hrshowhide.checked" name="last_nameV" (change)="model.last_nameV == 'true' ? model.last_nameV = 'false' : model.last_nameV = 'true'"> Yeager</td>
           <td>Eagle Intelligence</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><label for="emailL">EMail</label></td>
-          <td>pyeager@firstrepublic.com</td>
-          <td><input type="checkbox" id="emailL" #emailL [checked]="hrshowhide.checked" name="emailL" (change)="model.emailL == 'true' ? model.emailL = 'false' : model.emailL = 'true'"></td>
-          <td><input type="checkbox" id="emailV" [checked]="emailL.checked && hrshowhide.checked" name="emailV" (change)="model.emailV == 'true' ? model.emailV = 'false' : model.emailV = 'true'"></td>
+          <td><input type="checkbox" id="emailL" #emailL [checked]="hrshowhide.checked" name="emailL" (change)="model.emailL == 'true' ? model.emailL = 'false' : model.emailL = 'true'">&nbsp;<label for="emailL">EMail</label></td>
+          <td><input type="checkbox" id="emailV" [checked]="emailL.checked && hrshowhide.checked" name="emailV" (change)="model.emailV == 'true' ? model.emailV = 'false' : model.emailV = 'true'"> pyeager@firstrepublic.com</td>
           <td>PWM</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><label for="mailing1L">Mailing Address 1</label></td>
-          <td>One Front Street   SF, CA</td>
-          <td><input type="checkbox" id="mailing1L" #mailing1L [checked]="hrshowhide.checked" name="mailing1L" (change)="model.mailing1L == 'true' ? model.mailing1L = 'false' : model.mailing1L = 'true'"></td>
-          <td><input type="checkbox" id="mailing1V" [checked]="mailing1L.checked && hrshowhide.checked" name="mailing1V" (change)="model.mailing1V == 'true' ? model.mailing1V = 'false' : model.mailing1V = 'true'"></td>
+          <td><input type="checkbox" id="mailing1L" #mailing1L [checked]="hrshowhide.checked" name="mailing1L" (change)="model.mailing1L == 'true' ? model.mailing1L = 'false' : model.mailing1L = 'true'">&nbsp;<label for="mailing1L" style="color:red">Mailing Postal Address</label></td>
+          <td><input type="checkbox" id="mailing1V" [checked]="mailing1L.checked && hrshowhide.checked" name="mailing1V" (change)="model.mailing1V == 'true' ? model.mailing1V = 'false' : model.mailing1V = 'true'">37 Ellis Street Fairfax, VA 22030</td>
           <td>Marketing</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><label for="mailing2L">Mailing Address 2</label></td>
-          <td>37 Ellis Street</td>
-          <td><input type="checkbox" id="mailing2L" #mailing2L [checked]="hrshowhide.checked" name="mailing2L" (change)="model.mailing2L == 'true' ? model.mailing2L = 'false' : model.mailing2L = 'true'"></td>
-          <td><input type="checkbox" id="mailing2V" [checked]="mailing2L.checked && hrshowhide.checked" name="mailing2V" (change)="model.mailing2V == 'true' ? model.mailing2V = 'false' : model.mailing2V = 'true'"></td>
-          <td>Marketing</td>
+          <td><input type="checkbox" id="mailing2L" #mailing2L [checked]="hrshowhide.checked" name="mailing2L" (change)="model.mailing2L == 'true' ? model.mailing2L = 'false' : model.mailing2L = 'true'">&nbsp;<label for="mailing2L" style="color:red">Mailing Postal Address</label></td>
+          <td><input type="checkbox" id="mailing2V" [checked]="mailing2L.checked && hrshowhide.checked" name="mailing2V" (change)="model.mailing2V == 'true' ? model.mailing2V = 'false' : model.mailing2V = 'true'">38 Ellis Street Fairfax, CA 94930</td>
+          <td>Digital Channels</td>
         </tr>
       </tbody>
       <!--<tr>
@@ -180,10 +166,8 @@
         <tr>
           <td><input type="checkbox" checked (change)="healthShowHide(healthshowhide.checked)" #healthshowhide></td>
           <td><a class="btn btn-link" (click)="healthShowHide(healthExpanded == true ? false: true)"><span *ngIf="healthExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!healthExpanded" class="glyphicon glyphicon-chevron-right"></span>Health/PHI</a><a class="btn btn-link" (click)="joyrideActivate()"><span class="glyphicon glyphicon-info-sign"></span></a></td>
-          <td><label for="dxL">Medical Diagnosis</label></td>
-          <td>Active Worker</td>
-          <td><input type="checkbox" id="dxL" #dxL [checked]="healthshowhide.checked" name="dxL" (change)="model.dxL == 'true' ? model.dxL = 'false' : model.dxL = 'true'"></td>
-          <td><input type="checkbox" id="dxV" [checked]="dxL.checked && healthshowhide.checked" name="dxV" (change)="model.dxV == 'true' ? model.dxV = 'false' : model.dxV = 'true'"></td>
+          <td><input type="checkbox" id="dxL" #dxL [checked]="healthshowhide.checked" name="dxL" (change)="model.dxL == 'true' ? model.dxL = 'false' : model.dxL = 'true'">&nbsp;<label for="dxL">Medical Diagnosis</label></td>
+          <td><input type="checkbox" id="dxV" [checked]="dxL.checked && healthshowhide.checked" name="dxV" (change)="model.dxV == 'true' ? model.dxV = 'false' : model.dxV = 'true'"> Active Worker</td>
           <td>Marketing</td>
         </tr>
       <tbody>
@@ -191,19 +175,15 @@
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><label for="rxL">Medical Prescription</label></td>
-          <td>CoQ10AndLecithin</td>
-          <td><input type="checkbox" id="rxL" #rxL [checked]="healthshowhide.checked" name="rxL" (change)="model.rxL == 'true' ? model.rxL = 'false' : model.rxL = 'true'"></td>
-          <td><input type="checkbox" id="rxV" [checked]="rxL.checked && healthshowhide.checked" name="rxV" (change)="model.rxV == 'true' ? model.rxV = 'false' : model.rxV = 'true'"></td>
+          <td><input type="checkbox" id="rxL" #rxL [checked]="healthshowhide.checked" name="rxL" (change)="model.rxL == 'true' ? model.rxL = 'false' : model.rxL = 'true'">&nbsp;<label for="rxL">Medical Prescription</label></td>
+          <td><input type="checkbox" id="rxV" [checked]="rxL.checked && healthshowhide.checked" name="rxV" (change)="model.rxV == 'true' ? model.rxV = 'false' : model.rxV = 'true'"> CoQ10AndLecithin</td>
           <td>Marketing</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><label for="bloodGrpL">Blood Group</label></td>
-          <td>O-Positive</td>
-          <td><input type="checkbox" id="bloodGrpL" #bloodGrpL [checked]="healthshowhide.checked" name="bloodGrpL" (change)="model.bloodGrpL == 'true' ? model.bloodGrpL = 'false' : model.bloodGrpL = 'true'"></td>
-          <td><input type="checkbox" id="bloodGrpV" [checked]="bloodGrpL.checked && healthshowhide.checked" name="bloodGrpV" (change)="model.bloodGrpV == 'true' ? model.bloodGrpV = 'false' : model.bloodGrpV = 'true'"></td>
+          <td><input type="checkbox" id="bloodGrpL" #bloodGrpL [checked]="healthshowhide.checked" name="bloodGrpL" (change)="model.bloodGrpL == 'true' ? model.bloodGrpL = 'false' : model.bloodGrpL = 'true'">&nbsp;<label for="bloodGrpL">Blood Group</label></td>
+          <td><input type="checkbox" id="bloodGrpV" [checked]="bloodGrpL.checked && healthshowhide.checked" name="bloodGrpV" (change)="model.bloodGrpV == 'true' ? model.bloodGrpV = 'false' : model.bloodGrpV = 'true'"> O-Positive</td>
           <td>Marketing</td>
         </tr>
       </tbody>
@@ -211,10 +191,8 @@
         <tr>
           <td><input type="checkbox" checked (change)="finTechShowHide(fintechshowhide.checked)" #fintechshowhide></td>
           <td><a class="btn btn-link" (click)="finTechShowHide(finTechExpanded == true ? false: true)"><span *ngIf="finTechExpanded" class="glyphicon glyphicon-chevron-down"></span><span *ngIf="!finTechExpanded" class="glyphicon glyphicon-chevron-right"></span>FinTech/PCI</a><a class="btn btn-link" (click)="joyrideActivate()"><span class="glyphicon glyphicon-info-sign"></span></a></td>
-          <td><label for="nonPciAcctL">PCI-Protected Account</label></td>
-          <td>1234566</td>
-          <td><input type="checkbox" id="nonPciAcctL" #nonPciAcctL [checked]="fintechshowhide.checked" name="nonPciAcctL" (change)="model.nonPciAcctL == 'true' ? model.nonPciAcctL = 'false' : model.nonPciAcctL = 'true'"></td>
-          <td><input type="checkbox" id="nonPciAcctV" [checked]="nonPciAcctL.checked && fintechshowhide.checked" name="nonPciAcctV" (change)="model.nonPciAcctV == 'true' ? model.nonPciAcctV = 'false' : model.nonPciAcctV = 'true'"></td>
+          <td><input type="checkbox" id="nonPciAcctL" #nonPciAcctL [checked]="fintechshowhide.checked" name="nonPciAcctL" (change)="model.nonPciAcctL == 'true' ? model.nonPciAcctL = 'false' : model.nonPciAcctL = 'true'">&nbsp;<label for="nonPciAcctL">PCI-Protected Account</label></td>
+          <td><input type="checkbox" id="nonPciAcctV" [checked]="nonPciAcctL.checked && fintechshowhide.checked" name="nonPciAcctV" (change)="model.nonPciAcctV == 'true' ? model.nonPciAcctV = 'false' : model.nonPciAcctV = 'true'"> 1234566</td>
           <td>Digitial Channels</td>
         </tr>
       </tbody>
@@ -222,10 +200,8 @@
         <tr>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><label for="nonPciSecDigitzV">PCI-Protected Security Code</label></td>
-          <td>345</td>
-          <td><input type="checkbox" id="nonPciSecDigitzL" #nonPciSecDigitzL [checked]="fintechshowhide.checked" name="nonPciSecDigitzL" (change)="model.nonPciSecDigitzL == 'true' ? model.nonPciSecDigitzL = 'false' : model.nonPciSecDigitzL = 'true'"></td>
-          <td><input type="checkbox" id="nonPciSecDigitzV" [checked]="nonPciSecDigitzL.checked && fintechshowhide.checked" name="nonPciSecDigitzV" (change)="model.nonPciSecDigitzV == 'true' ? model.nonPciSecDigitzV = 'false' : model.nonPciSecDigitzV = 'true'"></td>
+          <td><input type="checkbox" id="nonPciSecDigitzL" #nonPciSecDigitzL [checked]="fintechshowhide.checked" name="nonPciSecDigitzL" (change)="model.nonPciSecDigitzL == 'true' ? model.nonPciSecDigitzL = 'false' : model.nonPciSecDigitzL = 'true'">&nbsp;<label for="nonPciSecDigitzV">PCI-Protected Security Code</label></td>
+          <td><input type="checkbox" id="nonPciSecDigitzV" [checked]="nonPciSecDigitzL.checked && fintechshowhide.checked" name="nonPciSecDigitzV" (change)="model.nonPciSecDigitzV == 'true' ? model.nonPciSecDigitzV = 'false' : model.nonPciSecDigitzV = 'true'"> 345</td>
           <td>Digital Channels</td>
         </tr>
       </tbody>
